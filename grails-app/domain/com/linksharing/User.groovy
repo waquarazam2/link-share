@@ -21,4 +21,11 @@ class User
         lastName nullable: false
         photo maxSize: 1024*20
     }
+    static hasMany = [
+            subscriptions:Subscription,
+            topics:Topic,
+            resourcesRating:ResourceRating,
+            readingItems:ReadingItem,
+            resources:Resource
+    ]
 }

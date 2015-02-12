@@ -8,4 +8,7 @@ class Resource {
     Date dateUpdated
     static constraints = {
     }
+    static hasMany = [
+            readingItems:ReadingItem
+    ]
 }

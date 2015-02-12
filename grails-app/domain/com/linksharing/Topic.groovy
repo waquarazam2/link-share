@@ -9,4 +9,10 @@ class Topic {
     static constraints= {
 
     }
+    static hasMany = [
+            subscriptions:Subscription,
+            resources:Resource
+    ]
+
+
 }

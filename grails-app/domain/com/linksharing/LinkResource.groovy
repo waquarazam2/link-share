@@ -5,4 +5,7 @@ class LinkResource {
     static constraints = {
         url size: 1..200
     }
+    static hasMany = [
+            resources:Resource
+    ]
 }
