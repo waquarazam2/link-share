@@ -11,4 +11,5 @@ class Resource {
     static hasMany = [
             readingItems:ReadingItem
     ]
+    static belongsTo = [topics:Topic]
 }

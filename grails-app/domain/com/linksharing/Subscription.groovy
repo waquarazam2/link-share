@@ -8,4 +8,5 @@ class Subscription
     Date dateCreated
     static constraints = {
     }
+    static belongsTo = [Topic]
 }
