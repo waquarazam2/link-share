@@ -1,11 +1,11 @@
 package com.linksharing
 
-class LinkResource {
+class LinkResource extends Resource {
     String url
     static constraints = {
         url size: 1..200,url: true
     }
-    static hasMany = [
-            resources:Resource
+    static belongsTo = [
+            Resource
     ]
 }

@@ -7,5 +7,7 @@ class ReadingItem
     boolean isRead
     static constraints = {
     }
-    static belongsTo=[Resource]
+    static belongsTo=[
+            Resource
+    ]
 }

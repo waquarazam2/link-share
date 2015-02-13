@@ -1,11 +1,11 @@
 package com.linksharing
 
-class DocumentResource {
+class DocumentResource extends Resource {
     String filePath
     static constraints = {
-        filePath size: 1..200,blank: false,nullable: false
+        filePath size: 1..200,blank: false
     }
-    static hasMany = [
-            resources:Resource
+    static belongsTo = [
+            Resource
     ]
 }

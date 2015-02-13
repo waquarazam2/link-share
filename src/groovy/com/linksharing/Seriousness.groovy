@@ -6,6 +6,6 @@ package com.linksharing
 enum Seriousness
 {
     SERIOUS,
-    VERYSERIOUS,
+    VERY_SERIOUS,
     CASUAL
 }

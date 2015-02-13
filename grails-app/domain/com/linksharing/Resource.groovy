@@ -1,6 +1,6 @@
 package com.linksharing
 
-class Resource {
+abstract class Resource {
     String description
     User createdBy
     Topic topic
@@ -13,5 +13,7 @@ class Resource {
     static hasMany = [
             readingItems:ReadingItem
     ]
-    static belongsTo = [topics:Topic]
+    static belongsTo = [
+            topics:Topic
+    ]
 }
