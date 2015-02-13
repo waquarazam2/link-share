@@ -7,6 +7,11 @@ class Subscription
     Seriousness seriousness
     Date dateCreated
     static constraints = {
+        user unique: 'topic',nullable: false
+
     }
-    static belongsTo = [Topic]
+    static belongsTo = [
+            Topic
+    ]
+
 }

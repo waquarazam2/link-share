@@ -14,7 +14,7 @@ class User
     Date lastUpdated
 
     static constraints = {
-        email email: true,size:8..30
+        email email: true,size:8..30,unique: true,blank: false
         userName nullable: false,unique: true
         password size: 6..20,blank: false
         firstName nullable:false

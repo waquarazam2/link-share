@@ -7,6 +7,8 @@ class Resource {
     Date dateCreated
     Date dateUpdated
     static constraints = {
+        description maxSize: 1024
+        topic unique: 'description'
     }
     static hasMany = [
             readingItems:ReadingItem
