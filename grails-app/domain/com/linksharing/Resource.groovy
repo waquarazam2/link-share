@@ -16,4 +16,12 @@ abstract class Resource {
     static belongsTo = [
             Topic
     ]
+    static mapping = {
+
+        //tablePerHierarchy: false
+
+    }
+    static fetchMode = [
+
+    ]
 }

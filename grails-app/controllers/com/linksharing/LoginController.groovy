@@ -16,13 +16,18 @@ class LoginController
             //render "Login Successfully"
             session["username"]=user.userName
             session["id"]=user.id
-            redirect(uri:"/home" )
+            redirect(controller: 'home', action: 'openHomePage' )
         }
         else
         {
             render "User Name or Password Incorrect"
         }
 
+    }
+    def logout()
+    {
+        session.invalidate()
+        redirect(action: 'login')
     }
     static beforeInterceptor = {
 

@@ -15,12 +15,7 @@
 </head>
 
 <body>
-<g:if test="${!session?.getAttribute("id")}">
-    <%
-        response.sendRedirect("/linksharing/login/login.gsp")
-    %>
-</g:if>
-<g:else>
+
     <g:form controller="topic" action="addTopic">
         <table class="TopicTable" align="left">
           %{--  <caption>Add New Topic</caption>--}%
@@ -73,7 +68,6 @@
 
         </fieldset>
     </div>
-</g:else>
 
 </body>
 </html>

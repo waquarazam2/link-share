@@ -13,6 +13,8 @@ class Topic {
             subscriptions:Subscription,
             resources:Resource
     ]
+    static mapping = {
 
+    }
 
 }

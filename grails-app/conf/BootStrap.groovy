@@ -29,7 +29,7 @@ class BootStrap {
 
         User.list().each {User user->
             resource1=Resource.findAll('from Resource order by rand()',[max:3])
-            println resource1.size()
+            //println resource1.size()
             createReadingItem(user,resource1)
         }
 
@@ -76,6 +76,7 @@ class BootStrap {
         List<User> users = []
         (1..5).each {
             User user = new User()
+
             user.firstName = "firstName${it}"
             user.lastName = "lastName${it}"
             user.userName = "mohdamir${it}"
@@ -84,7 +85,7 @@ class BootStrap {
             user.admin = true
             user.active = true
             user.photo = [1, 2, 3, 4, 5]
-            if (user.save())
+            if (user.save(flush: true))
                 users.add(user)
             else {
                 user.errors.allErrors.each {
@@ -116,7 +117,7 @@ class BootStrap {
         subscription.topic = topic
         subscription.seriousness = Seriousness.VERY_SERIOUS
         subscription.user = user
-        subscription.save()
+        subscription.save(flush: true)
     }
 
 }

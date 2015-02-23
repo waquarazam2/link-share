@@ -25,7 +25,7 @@
 </header>
 <div>
     <ul class="Menu">
-        <li class="MenuLi"><g:link uri="/home" >Home</g:link></li>
+        <li class="MenuLi"><g:link controller="home" action="home" >Home</g:link></li>
         <li class="MenuLi"><a href="" >Show Topic</a></li>
         <li class="MenuLi"><a href="">Subscription</a></li>
         <li class="MenuLi"><a href="">Top Post</a></li>
@@ -39,12 +39,9 @@
     <a href="" ><g:img dir="images" file="attachment1.png" width="4%" style="margin-bottom:-1%;padding:0px 3px"></g:img></a>
     <input type="text" class="Text" placeholder="Search The Post"><input type="submit" class="Button" value="Go!">
     <a href="" ><g:img dir="images" file="user.png" width="4.5%" style="margin-bottom:-1.2%;padding:0px 3px"></g:img></a>
-    <g:if test= "${!session["username"]}">
-        <g:link uri="/login/login"  class="SignIn">Sign in</g:link>
-    </g:if>
-    <g:else>
-        <a href="" class="SignIn"> ${session["username"]}</a>
-    </g:else>
+    <a href="" class="SignIn"> ${session["username"]}</a>
+    <g:link action="logout" controller="login" class="SignIn">Logout</g:link>
+
 </div>
 <div class="Wrapper">
     <g:layoutBody/>

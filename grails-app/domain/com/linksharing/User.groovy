@@ -28,4 +28,7 @@ class User
             readingItems:ReadingItem,
             resources:Resource
     ]
+    static mapping = {
+        topics cascade: "all-delete-orphan"
+    }
 }
