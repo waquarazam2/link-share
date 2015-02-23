@@ -5,7 +5,7 @@ abstract class Resource {
     User createdBy
     Topic topic
     Date dateCreated
-    Date dateUpdated
+    Date lastUpdated
     static constraints = {
         description maxSize: 1024
         topic unique: 'description'
@@ -14,6 +14,6 @@ abstract class Resource {
             readingItems:ReadingItem
     ]
     static belongsTo = [
-            topics:Topic
+            Topic
     ]
 }

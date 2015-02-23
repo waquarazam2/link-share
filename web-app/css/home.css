@@ -1,0 +1,117 @@
+.Wrapper
+{
+    margin-top:5%;
+    width: 100%;
+    border:0px solid black;
+    clear: both;
+}
+.Header
+{
+    width: 100%;
+    padding:1%  0px;
+    color:white;
+    background-color:rgba(117, 33, 46, 0.98);
+}
+.Header H1
+{
+    padding-left: 1%;
+    text-align: center;
+}
+.Menu
+{
+    float: left;
+
+}
+.Menu,.Nav
+{
+    width:45%;
+    list-style-type: none;
+    border:0px solid #000000;
+    font-size: 88%;
+    margin-top: 2px;
+    margin-left: -2%;
+
+}
+
+.Nav
+{
+    float: right;
+    text-align: right;
+
+}
+.SignIn
+{
+    float:right;
+
+    margin-left: 1%;
+    border: 1px solid gray;
+    padding:4px 5px ;
+    background-color: rgba(117, 33, 46, 0.98);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.SignIn:hover
+{
+    color:lightgray;
+}
+.Menu .MenuLi
+{
+    display: inline-block;
+    border:0px solid black;
+    margin-left:-.6%;
+
+}
+
+.Menu .MenuLi a
+{
+    padding-top: -1%;
+    color:gray;
+    text-decoration: none;
+    border-right: 1px solid lightgray;
+    padding: 10px 10px;
+    display: block;
+}
+.Menu .MenuLi:hover,.Menu .MenuLi a:hover
+{
+    background-color:rgba(117, 33, 46, 0.98);
+    color:white;
+}
+.Text
+{
+    border: 1px solid lightgray;
+    padding: 5px 0px;
+
+}
+.Button
+{
+
+    text-align: center;
+    border:1px solid #AAA;
+    padding:4px 0px;
+
+}
+.Button:hover
+{
+    color:white;
+    background-color: rgba(117, 33, 46, 0.98);;
+}
+.Footer
+{
+    width: 100%;
+    color:white;
+    background-color: rgba(117, 33, 46, 0.98);;
+    padding: 2px 0px;
+    margin-top: 40%;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 90%;
+    font-weight:bold;
+}
+.Footer a
+{
+    color:white;
+    float: right;
+    padding-right: 5px;
+    text-decoration: none;
+
+}

@@ -102,7 +102,7 @@
 </header>
 <h1 style="text-align:right;width:75%;margin:2% 0px;color:rgba(117, 33, 46, 0.98);;font-size:250%;border:0px solid #000000;">Its Time To Share The Thing</h1>
 
-<form method="post" action="#">
+<form method="post" action="Login">
     <table align="center" class="Table">
         <caption>Login</caption>
         <tr>

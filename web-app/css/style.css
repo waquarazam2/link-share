@@ -1,0 +1,75 @@
+.TopicTable
+{
+    font-family:"Bookman", Georgia, "Times New Roman", serif;
+    margin-left:4%;
+    margin-top:1% ;
+    width: 30%;
+    border: 0px solid lightgray;
+}
+.TopicTable td
+{
+    color:rgba(117, 33, 46, 0.98);
+    padding:3%;
+    font-weight: bold;
+}
+.TopicTable .Text
+{
+    width:100%;
+}
+.TopicTable .Button
+{
+    width: 25%;
+}
+.TopicTable caption
+{
+    background-color: rgba(117, 33, 46, 0.98);
+    color:white;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    padding:5px 0px;
+}
+
+.RecentTopic
+{
+    width: 25%;
+    float: right;
+    margin-right: 6%;
+}
+.RecentTopic fieldset
+{
+    color:white;
+    /*font-weight: bold;*/
+    border:0px;
+}
+.RecentTopic table
+{
+    width: 100%;
+    font-family: "Bookman", Georgia, "Times New Roman", serif;
+    font-size: 90%;
+}
+.RecentTopic fieldset legend
+{
+    background-color: rgba(117, 33, 46, 0.98);
+    border-radius: 5px;
+    width: 100%;
+    font-size: 120%;
+
+}
+.RecentTopic fieldset legend,fieldset li
+{
+    padding:3px 0px;
+    font-family: "Bookman", Georgia, "Times New Roman", serif;
+    width: 100%;
+    border-bottom: 0px solid lightgray;
+}
+
+.RecentTopic a
+{
+    text-decoration: none;
+    color:#555;
+}
+.RecentTopic a:hover
+{
+
+    color:black;
+}

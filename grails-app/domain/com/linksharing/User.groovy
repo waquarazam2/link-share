@@ -18,7 +18,7 @@ class User
         userName nullable: false,unique: true
         password size: 6..20,blank: false
         firstName nullable:false
-        lastName nullable: false
+        lastName nullable:false
         photo maxSize: 1024*20
     }
     static hasMany = [
