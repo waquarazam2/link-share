@@ -1,6 +1,7 @@
 package com.linksharing
 
-class HomeController {
+class HomeController
+{
 
     def home()
     {

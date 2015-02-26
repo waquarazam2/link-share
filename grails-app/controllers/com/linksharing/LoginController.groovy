@@ -13,7 +13,6 @@ class LoginController
 
         if(user?.userName==params?.userName)
         {
-            //render "Login Successfully"
             session["username"]=user.userName
             session["id"]=user.id
             redirect(controller: 'home', action: 'openHomePage' )

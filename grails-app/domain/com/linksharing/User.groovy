@@ -31,4 +31,15 @@ class User
     static mapping = {
         topics cascade: "all-delete-orphan"
     }
+
+
+    User(RegistrationCO registrationCO){
+        this.firstName=registrationCO.fName
+        this.lastName=registrationCO.lName
+        this.userName=registrationCO.fName
+        this.password=registrationCO.passwd
+        this.email=registrationCO.email
+        this.photo=registrationCO.photo
+    }
+
 }

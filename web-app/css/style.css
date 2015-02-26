@@ -63,13 +63,95 @@
     border-bottom: 0px solid lightgray;
 }
 
-.RecentTopic a
+.RecentTopic a,.TopPost a
 {
     text-decoration: none;
     color:#555;
 }
+
+
 .RecentTopic a:hover
 {
-
     color:black;
+}
+.RecentPost
+{
+    margin-left: .8%;
+    width: 45%;
+    float: left;
+}
+
+.RecentPost .PostImage
+{
+    float: left;
+    border:0px solid lightgray;
+    margin-right: 2%;
+}
+.RecentPost fieldset
+{
+    border: 0px;
+}
+.RecentPost fieldset legend
+{
+    width: 100%;
+    background-color:rgba(117, 33, 46, 0.98) ;
+    color:white;
+    padding:3px 5px;
+    border-radius: 5px;
+    padding-left: 2%;
+    font-weight: bold;
+}
+.RecentPost a
+{
+    font-weight: normal;
+    font-size: 85%;
+}
+.RecentPost a:hover
+{
+    color:#000000;
+}
+.PostHeader
+{
+    font-weight: bold;
+    color:#000000;
+}
+.PostMain
+{
+    height: 69px;
+    padding-top:2%;
+    font-size: 95%;
+}
+.PostFooter
+{
+    margin-top:0%;
+}
+.RecentPost div
+{
+    font-family:"Bookman", Georgia, "Times New Roman", serif;
+    border:0px solid black;
+}
+.Document
+{
+
+    width:80%;
+    margin:1.5% auto;
+    border:0px solid gray;
+}
+.Document .Text
+{
+    width: 100%;
+}
+.Document .File
+{
+    border: 1px solid lightgray;
+    width: 100%;
+    padding:3px 0px;
+}
+.Document td
+{
+    padding:2% 0px;
+}
+.Document .Button
+{
+    width:25%;
 }

@@ -17,4 +17,9 @@ class Topic {
 
     }
 
+    Topic(TopicCO topicCO){
+
+        this.name= topicCO.name
+        this.visibility=topicCO.visibility
+    }
 }

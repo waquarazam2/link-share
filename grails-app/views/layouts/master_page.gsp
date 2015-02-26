@@ -14,7 +14,18 @@
         {
             window.location.href="registration.jsp"
         }
-
+        function openDocumentPopup()
+        {
+            window.open("/linksharing/documentResource/document.gsp","Popup","width=600,height=400,left=350,top=150")
+        }
+        function openLinkPopup()
+        {
+            window.open("/linksharing/linkResource/link_resource.gsp","Popup","width=600,height=400,left=350,top=150")
+        }
+        function openInvitationPopup()
+        {
+            window.open("/linksharing/sendInvitation/sendinvitation.gsp","Popup","width=600,height=400,left=350,top=150")
+        }
     </script>
     <g:layoutHead/>
     <title><g:layoutTitle default="Link Sharing"></g:layoutTitle></title>
@@ -33,10 +44,10 @@
     </ul>
 </div>
 <div class="Nav">
-    <g:link uri="/topic/topic" ><g:img dir="images" file="new1.png"  width="4.8%" style="margin-bottom:-1%;padding:0px 3px"></g:img></g:link>
-    <a href="" ><g:img dir="images" file="send.png"  width="5%" style="margin-bottom:-1.7%;padding:0px 3px"></g:img></a>
-    <a href="" ><g:img dir="images" file="document.png" width="4%" style="margin-bottom:-1%;padding:0px 3px"></g:img></a>
-    <a href="" ><g:img dir="images" file="attachment1.png" width="4%" style="margin-bottom:-1%;padding:0px 3px"></g:img></a>
+    <g:link controller="topic" action="topic" ><g:img dir="images" file="new1.png"  width="4.8%" style="margin-bottom:-1%;padding:0px 3px"></g:img></g:link>
+    <a href="" onclick="openInvitationPopup()"><g:img dir="images" file="send.png"  width="5%" style="margin-bottom:-1.7%;padding:0px 3px"></g:img></a>
+    <a href="" onclick="openDocumentPopup()"><g:img dir="images" file="document.png" width="4%" style="margin-bottom:-1%;padding:0px 3px"></g:img></a>
+    <a href=""  onclick="openLinkPopup()"><g:img dir="images" file="attachment1.png" width="4%" style="margin-bottom:-1%;padding:0px 3px"></g:img></a>
     <input type="text" class="Text" placeholder="Search The Post"><input type="submit" class="Button" value="Go!">
     <a href="" ><g:img dir="images" file="user.png" width="4.5%" style="margin-bottom:-1.2%;padding:0px 3px"></g:img></a>
     <a href="" class="SignIn"> ${session["username"]}</a>

@@ -23,7 +23,7 @@
                 <td>Topic Name</td><td><g:textArea name="name" class="Text"></g:textArea></td>
             </tr>
             <tr>
-                <td>Visibility</td><td><g:select name="visibility" from="['Select','PUBLIC','PRIVATE']" class="Text"></g:select></td>
+                <td>Visibility</td><td><g:select name="visib" from="['Select','PUBLIC','PRIVATE']" class="Text"></g:select></td>
             </tr>
             <tr>
                 <td colspan="2" align="right">

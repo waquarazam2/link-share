@@ -8,4 +8,11 @@ class LinkResource extends Resource {
     static belongsTo = [
             Resource
     ]
+    LinkResource(LinkResourceCO linkResourceCO,User user,Topic topic)
+    {
+        description=linkResourceCO.description
+        createdBy=user
+        this.topic=topic
+        this.url=linkResourceCO.url
+    }
 }

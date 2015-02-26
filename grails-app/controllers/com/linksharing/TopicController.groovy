@@ -1,37 +1,25 @@
 package com.linksharing
-
 class TopicController {
 
-
+    TopicService topicService
     def topic()
     {
-
+        if(!session["id"])
+        {
+            redirect( action: 'login' ,controller: 'login')
+        }
     }
     def index()
     {
         Topic topic =Topic.get(params.id)
         render topic.name+ "\n"+topic.visibility
     }
-    def addTopic()
+    def addTopic(TopicCO topicCO)
     {
-        String name=params.name
-        String visib=params.visibility
-        Visibility visibility
-        int id=session.getAttribute("id")
+
+        int id=session["id"]
         User user=User.get(id)
-        if(visib.equals('PUBLIC'))
-        {
-            visibility=Visibility.PUBLIC
-        }
-        else if(visib.equals('PRIVATE'))
-        {
-            visibility=Visibility.PRIVATE
-        }
-        Topic topic=new Topic()
-        topic.name=name
-        topic.visibility=visibility
-        user.addToTopics(topic)
-        user.save(flush: true)
-        render view: '/topic/topic'
+        topicService.addTopic(topicCO,user)
+        redirect action: 'topic'
     }
 }

@@ -17,11 +17,8 @@ abstract class Resource {
             Topic
     ]
     static mapping = {
-
-        //tablePerHierarchy: false
-
+        tablePerHierarchy false
     }
     static fetchMode = [
-
     ]
 }

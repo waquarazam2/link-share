@@ -8,7 +8,7 @@ class BootStrap {
         Topic topic
         List<Resource> resource1=[]
         Resource resource
-        List<LinkResource> link = []
+        List<LinkResourceCO> link = []
         List <DocumentResource> document=[]
 
         users.eachWithIndex { user, index ->
@@ -32,7 +32,7 @@ class BootStrap {
             //println resource1.size()
             createReadingItem(user,resource1)
         }
-
+        inbox()
     }
     def destroy = {
     }
@@ -119,5 +119,15 @@ class BootStrap {
         subscription.user = user
         subscription.save(flush: true)
     }
+    void inbox()
+    {
+        def unread=ReadingItem.createCriteria().list() {
+            projections{
+                property("user")
+            }
+            eq("isRead",true)
 
+        }
+        println unread
+    }
 }
