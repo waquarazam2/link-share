@@ -9,8 +9,8 @@ class LoginController
     }
     def userAuthontication()
     {
-        User user=User.findByUserName(params.userName)
-
+        User user=User.findByUserNameAndActive(params.userName,true)
+    session.setMaxInactiveInterval(-1)
         if(user?.userName==params?.userName)
         {
             session["username"]=user.userName
@@ -29,7 +29,10 @@ class LoginController
         redirect(action: 'login')
     }
     static beforeInterceptor = {
-
+        User user=User.findByUserName(params?.userName)
+        if(user?.admin)
+            session["isAdmin"]=true
+4
     }
     static afterInterceptor = {
 

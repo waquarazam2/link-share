@@ -8,6 +8,7 @@
 <%@ page import="com.linksharing.User" contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <asset:javascript src="application.js"></asset:javascript>
     <link rel="stylesheet" type="text/css" href="/linksharing/css/home.css">
     <script type="text/javascript">
         function openRegistration()
@@ -16,11 +17,11 @@
         }
         function openDocumentPopup()
         {
-            window.open("/linksharing/documentResource/document.gsp","Popup","width=600,height=400,left=350,top=150")
+            window.open("/linksharing/documentResource/document.gsp","Popup","width=600,height=450,left=350,top=100")
         }
         function openLinkPopup()
         {
-            window.open("/linksharing/linkResource/link_resource.gsp","Popup","width=600,height=400,left=350,top=150")
+            window.open("/linksharing/linkResource/link_resource.gsp","Popup","width=600,height=450,left=350,top=100")
         }
         function openInvitationPopup()
         {
@@ -37,10 +38,12 @@
 <div>
     <ul class="Menu">
         <li class="MenuLi"><g:link controller="home" action="home" >Home</g:link></li>
-        <li class="MenuLi"><a href="" >Show Topic</a></li>
-        <li class="MenuLi"><a href="">Subscription</a></li>
-        <li class="MenuLi"><a href="">Top Post</a></li>
-        <li class="MenuLi"><a href="">Recent Post</a></li>
+        <li class="MenuLi"><a href="" >Topic</a></li>
+        <li class="MenuLi"><a href="">Post</a></li>
+        <li class="MenuLi"><g:link controller="dashboard" action="dashboard"> Dashboard</g:link></li>
+        <g:if test="${session["isAdmin"]}">
+             <li class="MenuLi"link><g:link controller="user" action="userlist">User</g:link></li>
+        </g:if>
     </ul>
 </div>
 <div class="Nav">

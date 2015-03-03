@@ -18,6 +18,7 @@ abstract class Resource {
     ]
     static mapping = {
         tablePerHierarchy false
+        description type:'text'
     }
     static fetchMode = [
     ]

@@ -10,6 +10,6 @@ class LinkResourceService {
 
         Resource resource=new LinkResource(linkResourceCO,user,topic)
 
-        resource.save(flush: true)
+        resource.save(flush: true,failOnError: true)
     }
 }

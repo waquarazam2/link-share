@@ -37,10 +37,10 @@
         <fieldset>
             <legend>&nbsp;&nbsp;&nbsp;Me...!</legend>
             <table>
-                <g:each in="${Topic.findAllByCreatedBy(User.get(session["id"]),[sort:"dateCreated",order:"desc"])}" var="topic">
+                <g:each in="${myTopicList}" var="myTopic">
                     <tr>
                         <td>
-                            <g:link id="${topic.id}"><span>${topic.name}</span>&nbsp;<span style="padding-left:1%;color:#555;font-size:65%;font-weight: bold;%">(${topic.visibility})</span>
+                            <g:link id="${myTopic.topic.id}" controller="topic" action="view"><span>${myTopic.topic.name}</span>&nbsp;<span style="padding-left:1%;color:#555;font-size:65%;font-weight: bold;%">(${myTopic.topic.visibility})</span>
                             </g:link>
                         </td>
 
@@ -52,14 +52,19 @@
         <fieldset>
             <legend>&nbsp;&nbsp;&nbsp;Recently Added Topic...!</legend>
             <table>
-                <g:each in="${Topic.findAllByCreatedByNotEqualAndVisibility(User.get(session["id"]),Visibility.PUBLIC,[sort:"dateCreated",order:"desc"])}" var="topic">
+                <g:each in="${otherTopicList}" var="otherTopic">
                     <tr>
                         <td>
-                            <g:link id="${topic.id}"><span>${topic.name}</span>   <span style="padding-left:1%;color:#555;font-size: 65%;font-weight: bold;">(${topic.visibility})</span>
+                            <g:link id="${otherTopic.topic.id}" action="view"><span>${otherTopic.topic.name}</span><span style="padding-left:1%;color:#555;font-size: 65%;font-weight: bold;">(${otherTopic.topic.visibility})</span>
                             </g:link>
                         </td>
                         <td>
-                            <g:link id="${topic.id}">Subscribe</g:link>
+                            <g:if test="${otherTopic.subscriptionStatus}">
+                                 <g:link id="${otherTopic.topic.id}" action="unSubscribeTopic">UnSubscribe</g:link>
+                            </g:if>
+                            <g:else>
+                                <g:link id="${otherTopic.topic.id}" action="subscribeTopic">Subscribe</g:link>
+                            </g:else>
                         </td>
                     </tr>
 

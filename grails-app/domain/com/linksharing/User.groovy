@@ -36,9 +36,10 @@ class User
     User(RegistrationCO registrationCO){
         this.firstName=registrationCO.fName
         this.lastName=registrationCO.lName
-        this.userName=registrationCO.fName
+        this.userName=registrationCO.uName
         this.password=registrationCO.passwd
         this.email=registrationCO.email
+        this.active=true
         this.photo=registrationCO.photo
     }
 

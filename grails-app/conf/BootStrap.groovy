@@ -12,7 +12,7 @@ class BootStrap {
         List <DocumentResource> document=[]
 
         users.eachWithIndex { user, index ->
-            topics.addAll(createTopic(user, index))
+            topics.addAll(createTopic(user, index+1))
         }
         topics.each {
             println it.name
@@ -77,8 +77,8 @@ class BootStrap {
         (1..5).each {
             User user = new User()
 
-            user.firstName = "firstName${it}"
-            user.lastName = "lastName${it}"
+            user.firstName = "first${it}"
+            user.lastName = "last${it}"
             user.userName = "mohdamir${it}"
             user.password = "abcdefgh${it}"
             user.email = "user${it}@gmail.com"

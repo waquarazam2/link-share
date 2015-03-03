@@ -6,10 +6,10 @@ class LinkResourceController {
     def link_resource() 
     {
     }
-    def add_link_resource(LinkResourceCO linkResourceCO)
+    def addLinkResource(LinkResourceCO linkResourceCO)
     {
         User user=User.get(session["id"])
-        Topic topic=Topic.findByIdAndName(session["id"],linkResourceCO.topic)
+        Topic topic=Topic.findByCreatedByAndName(user,linkResourceCO.topic)
 
         linkResourceService.addLinkResource(linkResourceCO,user,topic)
 

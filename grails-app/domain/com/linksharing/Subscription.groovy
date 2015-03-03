@@ -8,7 +8,6 @@ class Subscription
     Date dateCreated
     static constraints = {
         user unique: 'topic',nullable: false
-
     }
     static belongsTo = [
             Topic

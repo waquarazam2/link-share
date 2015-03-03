@@ -63,7 +63,7 @@
     border-bottom: 0px solid lightgray;
 }
 
-.RecentTopic a,.TopPost a
+.RecentTopic a
 {
     text-decoration: none;
     color:#555;
@@ -80,18 +80,28 @@
     width: 45%;
     float: left;
 }
+.TopPost,.Inbox
+{
+    margin-right: .8%;
+    width: 45%;
+    float: right;
 
-.RecentPost .PostImage
+}
+.Inbox
+{
+    color:rgba(117, 33, 46, 0.98);
+}
+.RecentPost .PostImage,.TopPost .PostImage,.Inbox .InboxImage
 {
     float: left;
     border:0px solid lightgray;
     margin-right: 2%;
 }
-.RecentPost fieldset
+.RecentPost fieldset,.TopPost fieldset,.Inbox fieldset
 {
     border: 0px;
 }
-.RecentPost fieldset legend
+.RecentPost fieldset legend,.TopPost fieldset legend,.Inbox fieldset legend
 {
     width: 100%;
     background-color:rgba(117, 33, 46, 0.98) ;
@@ -101,31 +111,37 @@
     padding-left: 2%;
     font-weight: bold;
 }
-.RecentPost a
+.RecentPost a,.TopPost a,.Inbox a
 {
     font-weight: normal;
     font-size: 85%;
+    color:#333;
+    text-decoration: none;
 }
-.RecentPost a:hover
+.RecentPost a:hover,.TopPost a:hover,.Inbox a:hover
 {
     color:#000000;
 }
-.PostHeader
+.PostHeader,.InboxHeader
 {
     font-weight: bold;
     color:#000000;
 }
-.PostMain
+.PostMain,.InboxMain
 {
     height: 69px;
     padding-top:2%;
     font-size: 95%;
 }
-.PostFooter
+.InboxMain
+ {
+    padding-top:1%;
+ }
+.PostFooter,.InboxFooter
 {
     margin-top:0%;
 }
-.RecentPost div
+.RecentPost div,.TopPost div,.Inbox div
 {
     font-family:"Bookman", Georgia, "Times New Roman", serif;
     border:0px solid black;
@@ -134,7 +150,7 @@
 {
 
     width:80%;
-    margin:1.5% auto;
+    margin:0% auto;
     border:0px solid gray;
 }
 .Document .Text

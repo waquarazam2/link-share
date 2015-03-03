@@ -18,7 +18,8 @@
 <div class="Header">
     <h1>Link Sharing</h1>
 </div>
-<g:form controller="linkResource" action="add_link_resource">
+<h2 style="text-align: center;color:rgba(117, 33, 46, 0.98);">Share Link to People</h2>
+<g:form controller="linkResource" action="addLinkResource">
     <table class="Document">
         <tr>
             <td>URL *</td>

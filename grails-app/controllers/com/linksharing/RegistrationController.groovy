@@ -10,7 +10,6 @@ class RegistrationController {
     def addUser(RegistrationCO registrationCO)
     {
 
-
         if(registrationService.registration(registrationCO))
             render "${registrationCO.uName} User Added Successfully"
         else

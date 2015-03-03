@@ -18,8 +18,9 @@
 <div class="Header">
     <h1>Link Sharing</h1>
 </div>
+<h2 style="text-align: center;color:rgba(117, 33, 46, 0.98);">Send Invitation to People</h2>
 <g:form controller="sendInvitation" action="send">
-    <table class="Document" style="margin-top:6%;width:70%">
+    <table class="Document" style="margin-top:4%;width:70%">
         <tr>
             <td>Email *</td>
             <td><input type="email" name="email" class="Text"></td>
