@@ -20,7 +20,7 @@
         <g:img dir="images" file="profile.png" width="128px"></g:img>
     </div>
     <div style="font-size: 120%;margin-top:2%;">
-        ${topicMap.topicName}
+        ${topicMap.topicName}&nbsp;<span style="font-size: 60%;font-weight: bold ">(${topicMap.visibility})</span>
     </div>
     <div style="color:gray;font-size: 90%">
         ${topicMap.createdBy}

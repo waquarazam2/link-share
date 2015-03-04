@@ -38,7 +38,7 @@ class TopicService {
     def getTopic(long topicId)
     {
         Topic top=Topic.get(topicId)
-        Map topic=[topicName:top.name,createdBy:top.createdBy.userName]
+        Map topic=[topicName:top.name,visibility:top.visibility,createdBy:top.createdBy.userName]
         return topic
     }
     def userTotalSubscription(long id)

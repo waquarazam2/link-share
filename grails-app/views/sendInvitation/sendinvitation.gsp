@@ -35,6 +35,7 @@
                         <option>${topic.name}</option>
                     </g:each>
                 </select>
+
             </td>
         </tr>
         <tr>

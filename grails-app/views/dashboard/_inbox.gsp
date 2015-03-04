@@ -6,7 +6,7 @@
         <div class="InboxHeader">
             <div>
                 <div  style="float: left">${inboxDTO.user.getName()} &nbsp;&nbsp;<span style="color:gray;font-size: 90%;">@${inboxDTO.user.userName}</span></div>
-                <div  style="float: right"><a href="" >${inboxDTO.resource.topic.name}</a> </div>
+                <div  style="float: right"><g:link controller="topic" action="view" id="${inboxDTO.resource.topic.id}">${inboxDTO.resource.topic.name}</g:link> </div>
             </div>
         </div>
         <div class="InboxMain" style="clear: right">
