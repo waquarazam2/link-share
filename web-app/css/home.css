@@ -71,7 +71,9 @@
     border-right: 1px solid lightgray;
     padding: 10px 10px;
     display: block;
+
 }
+
 .Menu .MenuLi:hover,.Menu .MenuLi a:hover
 {
     background-color:rgba(117, 33, 46, 0.98);

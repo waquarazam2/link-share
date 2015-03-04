@@ -10,13 +10,9 @@ class TopicController {
         }
         def myTopicList=topicService.getMyTopicList(User.get(session["id"]))
         def otherTopicList =topicService.getOtherTopicList(User.get(session["id"]))
-        render(view: '/topic/topic',model:[myTopicList:myTopicList,otherTopicList:otherTopicList])
+        render(view: '/topic/topic',model:[myTopicListDTO:myTopicList,otherTopicListDTO:otherTopicList])
     }
-    def index()
-    {
-        Topic topic =Topic.get(params.id)
-        render topic.name+ "\n"+topic.visibility
-    }
+
     def addTopic(TopicCO topicCO)
     {
 

@@ -3,7 +3,7 @@
     <g:img dir="images" file="profile.png" width="100px"></g:img>
 </div>
 <div style="font-size: 80%;margin-top:2%;">
-    <a href="">${showTopicDTO.user.firstName}</a>
+    <a href="">${showTopicDTO.user.name}</a>
 </div>
 <div style="color:gray;font-size: 80%">
     @${showTopicDTO.user.userName}
