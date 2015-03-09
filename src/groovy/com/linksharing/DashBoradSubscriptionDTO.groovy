@@ -8,4 +8,5 @@ class DashBoardSubscriptionDTO {
     int totalSubscription
     int totalPost
     boolean owner
+    Seriousness seriousness
 }

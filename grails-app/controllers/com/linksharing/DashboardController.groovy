@@ -6,21 +6,21 @@ class DashboardController {
     def dashboard()
     {
 
-        def inboxDTOList=dashBoardService.getInboxItem(session["id"])
-        def dashBoardUserInfo=dashBoardService.getDashBoardUserInfo(session["id"])
-        def dashBoradSubscriptionList=dashBoardService.getDashBoradSubscriptionInfo(session["id"])
 
-        render(view: '/dashboard/dashboard',model: [dashBoardUserInfo:dashBoardUserInfo, inboxDTO:inboxDTOList,dashBoardSubscription:dashBoradSubscriptionList])
+        /*def dashBoardUserInfo=dashBoardService.getDashBoardUserInfo(session["id"])
+        render(view: '/dashboard/dashboard',model: [dashBoardUserInfo:dashBoardUserInfo])*/
     }
-
     def markasread()
     {
         long readingid=Long.parseLong(params.id)
         if(dashBoardService.markAsRead(readingid))
-            redirect(action: 'dashboard')
+        {
+        //    redirect(controller: 'topic' ,action:'view' ,id:params.topic)
+                render 'success'
+        }
         else
         {
-            render "Sorry Some Error Occure"
+            render "faild"
         }
     }
     def deleteTopic()
@@ -28,7 +28,7 @@ class DashboardController {
 
         if(dashBoardService.deleteTopic(Long.parseLong(params.id)))
         {
-            render "Topic has Been Deleted"
+            redirect(action:'dashboard')
         }
         else
         {

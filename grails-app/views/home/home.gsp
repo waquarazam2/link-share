@@ -37,7 +37,7 @@
                <div class="TopPostMain">
                    <div class="PostHeader">
                        <div>
-                           <div  style="float: left">${resource.createdBy.firstName} &nbsp;&nbsp;<span style="color:gray;font-size: 90%;">@${resource.createdBy.firstName} &nbsp;&nbsp;${resource.dateCreated}</span></div>
+                           <div  style="float: left">${resource.createdBy.name} &nbsp;&nbsp;<span style="color:gray;font-size: 90%;">@${resource.createdBy.userName} &nbsp;&nbsp;<g:formatDate date="${resource.dateCreated}" format="dd-MMM-yyyy hh-mm a"></g:formatDate></span></div>
                            <div  style="float: right"><a href="" >Grails</a> </div>
                        </div>
                    </div>

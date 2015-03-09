@@ -30,12 +30,16 @@
                 Topic *
             </td>
             <td colspan="2" align="right">
-                <select class="Text" name="topic">
-                    <g:each in="${Topic.findAllByCreatedByAndVisibility(User.get(session["id"]),Visibility.PRIVATE)}" var="topic">
-                        <option>${topic.name}</option>
-                    </g:each>
-                </select>
-
+                <g:if test="${params.id}">
+                    <g:textField name="topic" value="${Topic.get(Long.parseLong(params.id)).name}" class="Text" readonly="readonly"></g:textField>
+                </g:if>
+                <g:else>
+                    <select class="Text" name="topic">
+                        <g:each in="${Topic.findAllByCreatedByAndVisibility(User.get(session["id"]),Visibility.PRIVATE)}" var="topic">
+                            <option>${topic.name}</option>
+                        </g:each>
+                    </select>
+                </g:else>
             </td>
         </tr>
         <tr>

@@ -2,7 +2,8 @@ package com.linksharing
 
 class SendInvitationController {
 
-    def mailService
+
+    def sendInvitationService
     def sendinvitation()
     {
 
@@ -11,13 +12,11 @@ class SendInvitationController {
     {
         String email=params.email
         String topic=params.topic
-        Topic topic1=Topic.findByCreatedByAndName(User.get(session["id"]),topic)
-        String url="http://localhost:8080/linksharing/topic/view/"+topic1.id
-        mailService.sendMail {
-            to email
-            subject topic +" invitation"
-            html "Hi.."+"<br>"+url
+        if(sendInvitationService.sendInvitationMail(email,topic,session["id"]))
+            render "Invitation Has Been Send"
+        else
+        {
+            render "<h2>Sorry due to some problem in service or internet connection</h2>"
         }
-        render "Invitation Has Been Send"
     }
 }

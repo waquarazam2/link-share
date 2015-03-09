@@ -2,19 +2,22 @@ package com.linksharing
 
 class UserController {
 
+    UserService userService
     def userlist()
     {
 
     }
     def block()
     {
-        User user=User.get(params.id)
 
-        if(params.active.equals('true'))
-            user.active=false
+        long userid=Long.parseLong(params.id)
+        String active=params.active
+        if(userService.blockUser(userid,active))
+        {
+            //   redirect(controller: 'user',action: 'userlist')
+            render 'success'
+        }
         else
-            user.active=true
-        user.save(flush: true)
-        redirect(controller: 'user',action: 'userlist')
+            render "<h2>Sorry, Please Try Again</h2>"
     }
 }

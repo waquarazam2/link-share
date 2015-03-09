@@ -8,9 +8,28 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <asset:javascript src="application.js"></asset:javascript>
     <link rel="stylesheet" type="text/css" href="/linksharing/css/registration.css">
 
     <title>Registration for Link Sharing</title>
+    <script>
+        $(document).ready(function(){
+
+            $("#Registration").validate({
+                rules:{
+                    fname:"required",
+                    lname:"required"
+                },
+                message:{
+                    fname:"Please Enter First Name"
+                }
+                /*submitHandler:function()
+                {
+                    alert()
+                }*/
+            });
+        });
+    </script>
 </head>
 <body>
 <header class="Header">
@@ -18,7 +37,7 @@
 </header>
 <h1 style="text-align:right;width:75%;margin-top:1%;color:darkgreen;font-size:250%;border:0px solid #000000;">Its Time To Share The Thing</h1>
 <g:link controller="login" action="login" class="SignIn">Sign in</g:link>
-<g:form controller="registration" action="addUser" enctype="multipart/form-data">
+<g:form controller="registration" action="addUser" enctype="multipart/form-data" id="Registration">
     <table align="center" class="Table">
         <%--<caption>Registration</caption>--%>
         <tr>

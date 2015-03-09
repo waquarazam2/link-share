@@ -40,13 +40,29 @@ class DashBoardService {
         }
         return inboxDTOList
     }
+    def getPostOnTopic(long topicid,long userid)
+    {
+        Topic topic=Topic.get(topicid)
+        def resources=Resource.withCriteria{
+            eq('topic',topic)
+            order('dateCreated',"desc")
+            maxResults(10)
+        }
+        List<PostOnTopicDTO> postOnTopicDTOList=new ArrayList<PostOnTopicDTO>()
+
+        resources.each {resource->
+            ReadingItem readingItem=ReadingItem.findByResourceAndUser(resource,User.get(userid))
+            postOnTopicDTOList.add(new PostOnTopicDTO(subscriptionStatus:readingItem?.user==User.get(userid)?true:false , user: resource.createdBy,resource: resource,document: resource instanceof DocumentResource,readingItem: readingItem))
+        }
+
+        return postOnTopicDTOList
+    }
     def getDashBoradSubscriptionInfo(long userid)
     {
         User user=User.get(userid)
-        def subscriptions=Subscription.withCriteria{
+        def subscriptions=Subscription.createCriteria().list([sort:'id',order:'desc',max:'20']){
             eq('user',user)
         }
-
         int totalSubscription
         int totalPost
         boolean owner
@@ -55,7 +71,7 @@ class DashBoardService {
             totalSubscription=Subscription.countByTopic(subscription.topic)
             totalPost=Resource.countByTopic(subscription.topic)
             owner=subscription.topic.createdBy==user
-            dashBoardSubscriptionDTOList.add(new DashBoardSubscriptionDTO(topic:subscription.topic,totalSubscription: totalSubscription,totalPost: totalPost,owner: owner ))
+            dashBoardSubscriptionDTOList.add(new DashBoardSubscriptionDTO(seriousness:subscription.seriousness , topic:subscription.topic,totalSubscription: totalSubscription,totalPost: totalPost,owner: owner ))
         }
         return dashBoardSubscriptionDTOList
     }
@@ -80,7 +96,7 @@ class DashBoardService {
     }
     boolean deleteTopic(long topicid)
     {
-        Topic topic=Topic.load(topicid)
+        Topic topic=Topic.get(topicid)
         def resources=Resource.withCriteria {
             eq('topic',topic )
         }

@@ -9,14 +9,24 @@
 <html>
 
 <head>
-
+    <asset:javascript src="application.js"></asset:javascript>
     <meta content="master_page" name="layout">
 
     <title></title>
+    <script>
+        $(document).ready(function(){
+            $('.Link').click(function(){
+                //alert(this.id)
+                $('button').text("Hello")
+            });
+        });
+    </script>
 </head>
 <body>
 <h4 align="center" style="border:1px solid black">
     This is Layout Demo
 </h4>
+<button>Button</button>
+<a href='#' id="/linksharing/link/view/5" class="Link">Click Here....</a>
 </body>
 </html>

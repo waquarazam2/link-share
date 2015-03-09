@@ -9,6 +9,7 @@
 <html>
 <head>
     <%@ page import="com.linksharing.*" %>
+    <link rel="stylesheet" type="text/css" href='<g:resource dir="css" file="style.css"></g:resource> '>
     <meta name="layout" content="master_page">
     <title>View Topic Detail</title>
 </head>
@@ -23,7 +24,7 @@
         ${topicMap.topicName}&nbsp;<span style="font-size: 60%;font-weight: bold ">(${topicMap.visibility})</span>
     </div>
     <div style="color:gray;font-size: 90%">
-        ${topicMap.createdBy}
+        @${topicMap.createdBy}
     </div>
     <div style="margin-top:0%;font-size: 90%;">
         <div style="float:left;width:20%;border:0px solid black">
@@ -37,13 +38,18 @@
         <div style="border:0px solid black">
 
             <g:if test="${subscriptionStatus}">
-                <g:link action="unSubscribeTopic" id="${params.id}" >UnSubscribe</g:link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="javascript:void(0)"  id="${params.id}" class="SignIn Subscribe" style="color:white">UnSubscribe</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <g:select  name="serious" id="${params.id}" from="${com.linksharing.Seriousness.values()}" value="${topicMap.seriousness}" class="Text Serious"></g:select>&nbsp;&nbsp;
             </g:if>
             <g:else>
-                <g:link action="subscribeTopic" id="${params.id}" >Subscribe</g:link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="javascript:void(0)"  id="${params.id}" class="SignIn Subscribe" style="color:white">Subscribe</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <g:select disabled="true" name="serious" id="${params.id}" from="${com.linksharing.Seriousness.values()}" value="${topicMap.seriousness}" class="Text Serious"></g:select>&nbsp;&nbsp;
             </g:else>
-                <g:select name="serious" from="['Serious','Very Serious']" class="Text"></g:select>&nbsp;&nbsp;
-            <g:img dir="images" file="send.png" style="margin-bottom:-3%" width="7%"></g:img>
+
+            <a href="" onclick="openInvitationPopup('/linksharing/sendInvitation/sendinvitation/${topicMap.topicId}')" >
+                <g:img dir="images" file="send.png" style="margin-bottom:-3%" width="7%">
+                </g:img>
+            </a>
         </div>
     </div>
     <br><br>
@@ -51,8 +57,24 @@
         <span style="font-size: 120%;font-weight: bold">User: ${topicMap.topicName}</span>
         <span style="float:right;"><a href="" style="color:gray;text-decoration: none;font-size: 80%;">View All</a></span>
     </div>
+    <ls:topicDetail></ls:topicDetail>
 
-    <g:render template="topicuser" collection="${showTopicDTOList}" var="showTopicDTO"></g:render>
+</div>
+
+<div style="border:0px solid lightgray;float:right;width:50%;" class="Inbox">
+    <fieldset>
+        <legend>
+            <span>Posts: ${topicMap.topicName} </span>
+            <span style="float: right;text-align: right">
+                <g:textField style="border:1px solid lightgray" name="search" class="" placeholder="Search....!"></g:textField>
+                <g:actionSubmit style="padding:1px 0px;border:0px;margin-left: -2.2%" class="Button" value="Go!" ></g:actionSubmit>
+            </span>
+        </legend>
+        <ls:postOnTopic></ls:postOnTopic>
+    </fieldset>
+    <div style="border:0px solid black;float: right;clear: both;width:15%;padding-bottom: .5%;">
+        <a href="" class="SignIn" style="color:white;">Next >></a>&nbsp;&nbsp;
+    </div>
 </div>
 
 

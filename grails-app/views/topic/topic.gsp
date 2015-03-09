@@ -26,12 +26,11 @@
 
     <g:form controller="topic" action="addTopic">
         <table class="TopicTable" align="left">
-          %{--  <caption>Add New Topic</caption>--}%
             <tr>
                 <td>Topic Name</td><td><g:textArea name="name" class="Text"></g:textArea></td>
             </tr>
             <tr>
-                <td>Visibility</td><td><g:select name="visib" from="['Select','PUBLIC','PRIVATE']" class="Text"></g:select></td>
+                <td>Visibility</td><td><g:select name="visib" from='${Visibility.values()}' class="Text"></g:select></td>
             </tr>
             <tr>
                 <td colspan="2" align="right">
@@ -44,19 +43,11 @@
     <div class="RecentTopic">
         <fieldset>
             <legend>&nbsp;&nbsp;&nbsp;Me...!</legend>
-            <table>
-                <g:render template="myTopicList" collection="${myTopicListDTO}" var="myTopic">
-                </g:render>
-            </table>
-
+            <ls:myTopicList></ls:myTopicList>
         </fieldset>
         <fieldset>
             <legend>&nbsp;&nbsp;&nbsp;Recently Added Topic...!</legend>
-            <table>
-                <g:render template="otherTopicList" collection="${otherTopicListDTO}" var="otherTopic">
-                </g:render>
-            </table>
-
+                <ls:otherTopicList></ls:otherTopicList>
         </fieldset>
     </div>
 

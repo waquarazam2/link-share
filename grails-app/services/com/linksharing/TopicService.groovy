@@ -27,23 +27,51 @@ class TopicService {
         subscription.user=user
         subscription.topic=topic
         subscription.save(flush: true)
+
+        def resources=Resource.withCriteria{
+            eq('topic',topic)
+        }
+        resources.each{resource->
+            ReadingItem readingItem=new ReadingItem()
+            readingItem.user=user
+            readingItem.isRead=false
+            resource.addToReadingItems(readingItem)
+            resource.save(flush:true)
+        }
+
+    }
+    def changeSeriousNess(long userid,long topicid,Seriousness seriousness)
+    {
+        User user=User.get(userid)
+        Topic topic=Topic.get(topicid)
+        Subscription subscription=Subscription.findByUserAndTopic(user,topic)
+        subscription.seriousness=seriousness
+        if(subscription.save(flush: true))
+        {
+            return  true
+        }
+        return false
+
     }
     def unSubscribe(Topic topic,User user)
     {
         Subscription subscription=Subscription.findByTopicAndUser(topic,user)
+
         subscription.delete(flush: true)
 
     }
 
-    def getTopic(long topicId)
+    def getTopic(long topicid,long userid)
     {
-        Topic top=Topic.get(topicId)
-        Map topic=[topicName:top.name,visibility:top.visibility,createdBy:top.createdBy.userName]
+        Topic top=Topic.get(topicid)
+        Subscription subscription=Subscription.findByTopic(top)
+
+        Map topic=[seriousness:subscription.seriousness,topicId:top.id,topicName:top.name,visibility:top.visibility,createdBy:top.createdBy.userName]
         return topic
     }
-    def userTotalSubscription(long id)
+    def userTotalSubscription(long topicid)
     {
-        Topic topic=Topic.get(id)
+        Topic topic=Topic.get(topicid)
         List totalSubscription=Subscription.createCriteria().list{
             projections{
                 count()

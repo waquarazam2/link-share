@@ -1,4 +1,5 @@
-
+<g:each in="${inboxDTOList}" var="inboxDTO">
+<div id="Inbox${inboxDTO.readingItem.id}">
     <div class="InboxImage">
         <g:img dir="images" file="profile.png" width="128x"></g:img>
     </div>
@@ -23,9 +24,13 @@
                     <g:link url="${inboxDTO.resource.filePath}">Download</g:link>&nbsp;&nbsp;
                 </g:if>
                 <a href="" >View Full Site</a >&nbsp;&nbsp;
-                <g:link action="markasread" id="${inboxDTO.readingItem.id}">Mark as read</g:link> &nbsp;&nbsp;
+                <a href='javascript:void(0)' id=${inboxDTO.readingItem.id} class="MarkAsRead">Mark as read</a> &nbsp;&nbsp; &nbsp;&nbsp;
                 <a href="" >View Post</a >
             </div>
         </div>
     </div>
+
+</div>
+
     <br><br><br>
+</g:each>
