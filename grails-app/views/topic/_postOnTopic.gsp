@@ -20,7 +20,7 @@
             </div>
             <div style="float: right">
                 <g:if test="${postOnTopic.document}">
-                    <g:link url="${postOnTopic.resource.filePath}">Download</g:link>&nbsp;&nbsp;
+                    <g:link url="${postOnTopic.resource.filePath}">Download</g:link>&nbsp;&nbsp;&nbsp;&nbsp;
                 </g:if>
                 <a href="" >View Full Site</a >&nbsp;&nbsp;
                 <g:if test="${postOnTopic.readingItem?.isRead}">
@@ -29,7 +29,7 @@
                 <g:elseif test="${postOnTopic.subscriptionStatus}">
                     <a href='javascript:void(0)' id=${postOnTopic.readingItem?.id} class="MarkAsRead">Mark as read</a> &nbsp;&nbsp;
                 </g:elseif>
-                <a href="" >View Post</a >
+                <g:link controller="post" action="post" id="${postOnTopic.resource.id}">View Post</g:link>
             </div>
         </div>
     </div>

@@ -17,12 +17,12 @@ class DocumentResourceController {
 
         MultipartFile inFile=documentResourceCO.file
         String name=inFile.getOriginalFilename()
-        String ext=name.substring(name.lastIndexOf('.'))
+        //String ext=name.substring(name.lastIndexOf('.'))
         String filePath=request.getRealPath('/')
 
         filePath=filePath+'documentFile/'+name
 
-        documentResourceService.addDocumentResource(documentResourceCO,user,topic,filePath,inFile)
+        documentResourceService.addDocumentResource(documentResourceCO,user,topic,filePath,inFile,name)
 
         render "Document Has been Uploaded"
 

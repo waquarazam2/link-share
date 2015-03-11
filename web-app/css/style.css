@@ -139,7 +139,7 @@
  }
 .PostFooter,.InboxFooter
 {
-    margin-top:0%;
+    /*margin-top:0%;*/
 }
 .RecentPost div,.TopPost div,.Inbox div
 {
@@ -170,4 +170,12 @@
 .Document .Button
 {
     width:25%;
+}
+div{
+    border: 0px solid black;
+}
+
+.Rating
+{
+    opacity: 0.3;
 }

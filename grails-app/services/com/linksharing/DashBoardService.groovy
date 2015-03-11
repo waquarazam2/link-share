@@ -19,7 +19,6 @@ class DashBoardService {
                 eq('topic',topic)
             }
 
-
         }
         resources=resources.sum()
         def readings=resources.collect{resource->
@@ -27,6 +26,7 @@ class DashBoardService {
                 eq('resource',resource)
                 eq('isRead',false)
                 eq('user',user)
+                order('id','desc')
             }
         }
         readings=readings-[[]]
@@ -113,5 +113,15 @@ class DashBoardService {
         Subscription.findByTopic(topic).delete(flush: true)
         topic.delete(flush: true)
         return true
+    }
+    def edit(long topicID,String topicName)
+    {
+        Topic topic=Topic.get(topicID)
+        topic.name=topicName
+        if(topic.save(flush: true))
+        {
+            return true
+        }
+        return false
     }
 }

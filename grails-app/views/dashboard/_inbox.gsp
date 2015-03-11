@@ -21,16 +21,16 @@
             </div>
             <div style="float: right">
                 <g:if test="${inboxDTO.document}">
-                    <g:link url="${inboxDTO.resource.filePath}">Download</g:link>&nbsp;&nbsp;
+                    <g:link target="_blank" url="${inboxDTO.resource.filePath}">Download</g:link>&nbsp;&nbsp;
                 </g:if>
                 <a href="" >View Full Site</a >&nbsp;&nbsp;
                 <a href='javascript:void(0)' id=${inboxDTO.readingItem.id} class="MarkAsRead">Mark as read</a> &nbsp;&nbsp; &nbsp;&nbsp;
-                <a href="" >View Post</a >
+                <g:link controller="post" action="post" id="${inboxDTO.resource.id}">View Post</g:link>
             </div>
         </div>
     </div>
-
+    <br><br><br>
 </div>
 
-    <br><br><br>
+
 </g:each>

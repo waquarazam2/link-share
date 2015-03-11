@@ -6,5 +6,6 @@ class ResourceRating
     User user
     int score
     static constraints = {
+        resource unique: 'user'
     }
 }

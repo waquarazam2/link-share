@@ -8,6 +8,7 @@ class LinksharingTagLib {
     TopicService topicService
     DashBoardService dashBoardService
     UserService userService
+    PostService postService
     def myTopicList={attr,body->
         def myTopicListDTO=topicService.getMyTopicList(User.get(session["id"]))
         out<<render(template:'/topic/myTopicList' , model:[myTopicListDTO:myTopicListDTO])
@@ -40,5 +41,10 @@ class LinksharingTagLib {
     def user={attr,body->
         List <UserDTO> userDTOList=userService.getUserInfo()
         out<<render(template: '/user/user',model: [userDTOList:userDTOList])
+    }
+    def post= { attr, body ->
+        def resource = postService.getViewPost(Long.parseLong(params.id))
+        def resourceRating = postService.getResourceRatingStatus(Long.parseLong(params.id), session["id"])
+        out << render(template: '/post/viewPost', model: [resource: resource, resourceRating: resourceRating])
     }
 }

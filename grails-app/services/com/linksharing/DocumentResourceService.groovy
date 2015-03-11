@@ -9,9 +9,9 @@ import javax.mail.Multipart
 class DocumentResourceService
 {
 
-    def addDocumentResource(DocumentResourceCO documentResourceCO,User user,Topic topic,String filePath,MultipartFile inFile)
+    def addDocumentResource(DocumentResourceCO documentResourceCO,User user,Topic topic,String filePath,MultipartFile inFile,String name)
     {
-        Resource resource=new DocumentResource(documentResourceCO,user,topic,filePath)
+        Resource resource=new DocumentResource(documentResourceCO,user,topic,'/linksharing/documentFile/'+name)
         inFile.transferTo(new File(filePath))
         resource.save(flush: true)
 

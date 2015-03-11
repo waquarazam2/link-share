@@ -35,4 +35,16 @@ class DashboardController {
             render "Sorry Please Try Again"
         }
     }
+    def editTopic()
+    {
+        long topicID=Long.parseLong(params.TopicID)
+        String topicName=params.TopicName
+        if(dashBoardService.edit(topicID,topicName))
+        {
+            redirect(action: 'dashboard')
+        }
+        else {
+            render "<h2>Sorry,Please Try Again </h2>"
+        }
+    }
 }

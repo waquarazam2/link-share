@@ -8,9 +8,10 @@ class HomeController
         if(!session["id"])
             redirect(controller: 'login', action: 'login')
         def resources=homeService.getRecentPost()
+        def topPost=homeService.getTopPost()
        // println resources
       //  redirect(url:'/home',model:[resources:resources])
-        render view: '/home/home'  ,model:[resources:resources]
+        render view: '/home/home'  ,model:[resources:resources,topPost:topPost]
     }
     def openHomePage()
     {

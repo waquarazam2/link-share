@@ -5,10 +5,13 @@
                 <g:img dir="images" file="profile.png" width="128px"></g:img>
             </div>
             <div style="font-size: 80%;margin-top:2%;">
-                <g:link controller="topic" action="view" id="${dashBoardSubscription.topic.id}" class="Topic">${dashBoardSubscription.topic.name}</g:link>
-                %{--  <g:textField name="TopicText" value="${dashBoardSubscription.topic.name}" class="Text TopicText"></g:textField>
-                  <g:actionSubmit value="Save" id="Save" class="Button Save"></g:actionSubmit>
-                  <g:actionSubmit value="Cancel" id="Cancel" class="Button Cancel"></g:actionSubmit>--}%
+                <a href="/linksharing/topic/view/${dashBoardSubscription.topic.id}" class="Topic" id="Topic${dashBoardSubscription.topic.id}">${dashBoardSubscription.topic.name}</a>
+                  <g:form style="display: inline" controller="dashboard" action="editTopic">
+                      <input type="hidden" value="${dashBoardSubscription.topic.id}" name="TopicID">
+                      <g:textField name="TopicName" value="${dashBoardSubscription.topic.name}" class="Text TopicText" id="TopicText${dashBoardSubscription.topic.id}"></g:textField>
+                      <g:submitButton name="Save" id="Save${dashBoardSubscription.topic.id}" class="Button Save"></g:submitButton>
+                  </g:form>
+                  <g:actionSubmit value="Cancel" id="Cancel${dashBoardSubscription.topic.id}"  class="Button Cancel"></g:actionSubmit>
             </div>
             <div style="color:gray;font-size: 80%">
                 <g:if test="${dashBoardSubscription.owner}">
@@ -37,7 +40,7 @@
                 <div style="width:35%;float:right">
                     <a href="" onclick="openInvitationPopup('/linksharing/sendInvitation/sendinvitation/${dashBoardSubscription.topic.id}')" ><g:img dir="images" file="message.png" width="11%"></g:img></a>&nbsp;&nbsp;
                     <g:if test="${dashBoardSubscription.owner}">
-                        <a href="" class="edit"> <g:img dir="images" file="edit.jpeg" width="9%" ></g:img></a>&nbsp;
+                        <a href="javascript:void(0)" class="Edit" id="${dashBoardSubscription.topic.id}"> <g:img dir="images" file="edit.jpeg" width="9%" ></g:img></a>&nbsp;
                         <g:link controller="dashboard" action="deleteTopic" id="${dashBoardSubscription.topic.id}"> <g:img dir="images" file="delete.jpeg" width="10%"></g:img></g:link>&nbsp;
                     </g:if>
                 </div>
