@@ -2,16 +2,19 @@
     <div>
         <div id="${dashBoardSubscription.topic.id}">
             <div  style="float:left;margin-right: 2%">
-                <g:img dir="images" file="profile.png" width="128px"></g:img>
+                <g:img uri="${dashBoardSubscription.topic.createdBy.photo}" width="128px"></g:img>
             </div>
             <div style="font-size: 80%;margin-top:2%;">
-                <a href="/linksharing/topic/view/${dashBoardSubscription.topic.id}" class="Topic" id="Topic${dashBoardSubscription.topic.id}">${dashBoardSubscription.topic.name}</a>
+                <a href="/linksharing/topic/view/?id=${dashBoardSubscription.topic.id}&offset=0" class="Topic" id="Topic${dashBoardSubscription.topic.id}">${dashBoardSubscription.topic.name}</a>
                   <g:form style="display: inline" controller="dashboard" action="editTopic">
                       <input type="hidden" value="${dashBoardSubscription.topic.id}" name="TopicID">
-                      <g:textField name="TopicName" value="${dashBoardSubscription.topic.name}" class="Text TopicText" id="TopicText${dashBoardSubscription.topic.id}"></g:textField>
-                      <g:submitButton name="Save" id="Save${dashBoardSubscription.topic.id}" class="Button Save"></g:submitButton>
+                      <g:textField name="TopicName" value="${dashBoardSubscription.topic.name}" style="display: none" class="Text TopicText" id="TopicText${dashBoardSubscription.topic.id}"></g:textField>
+                      <g:submitButton name="Save" id="Save${dashBoardSubscription.topic.id}" class="Button Save" style="display: none">
+                      </g:submitButton>
                   </g:form>
-                  <g:actionSubmit value="Cancel" id="Cancel${dashBoardSubscription.topic.id}"  class="Button Cancel"></g:actionSubmit>
+                  <g:actionSubmit value="Cancel" id="Cancel${dashBoardSubscription.topic.id}" style="display: none" class="Button Cancel">
+
+                  </g:actionSubmit>
             </div>
             <div style="color:gray;font-size: 80%">
                 <g:if test="${dashBoardSubscription.owner}">
@@ -34,9 +37,12 @@
             </div>
             <div style="clear:right;padding-top: 1.5%;border:0px solid black">
                 <g:select name="Serious" id="${dashBoardSubscription.topic.id}" from="${com.linksharing.Seriousness.values()}" value="${dashBoardSubscription.seriousness}" class="Text Serious"></g:select>
-                <g:if test="${dashBoardSubscriptionList.owner}">
+                <g:if test="${dashBoardSubscription.owner}">
                     <g:select name="Visibility" from="${com.linksharing.Visibility.values()}" value="${dashBoardSubscription.topic.visibility}" class="Text"></g:select>&nbsp;
                 </g:if>
+                <g:else>
+                    <g:textField name="visibility" disabled="disabled" readonly="readonly" value='${dashBoardSubscription.topic.visibility}' class="Text" style="width: 15%;text-align: center"></g:textField>
+                </g:else>
                 <div style="width:35%;float:right">
                     <a href="" onclick="openInvitationPopup('/linksharing/sendInvitation/sendinvitation/${dashBoardSubscription.topic.id}')" ><g:img dir="images" file="message.png" width="11%"></g:img></a>&nbsp;&nbsp;
                     <g:if test="${dashBoardSubscription.owner}">
@@ -49,3 +55,6 @@
     </div>
     <br>
 </g:each>
+<div class="Paginate">
+    <util:remotePaginate max="5" update="Subscription" action="seeMoreSubscription" total="${totalSubscription}"></util:remotePaginate>
+</div>

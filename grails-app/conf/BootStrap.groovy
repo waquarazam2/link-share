@@ -84,7 +84,7 @@ class BootStrap {
             user.email = "user${it}@gmail.com"
             user.admin = true
             user.active = true
-            user.photo = [1, 2, 3, 4, 5]
+            user.photo = '/linksharing/profilePic/profile.png'
             if (user.save(flush: true))
                 users.add(user)
             else {

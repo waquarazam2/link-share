@@ -7,11 +7,6 @@ class HomeController
     {
         if(!session["id"])
             redirect(controller: 'login', action: 'login')
-        def resources=homeService.getRecentPost()
-        def topPost=homeService.getTopPost()
-       // println resources
-      //  redirect(url:'/home',model:[resources:resources])
-        render view: '/home/home'  ,model:[resources:resources,topPost:topPost]
     }
     def openHomePage()
     {
@@ -23,5 +18,20 @@ class HomeController
     static afterInterceptor ={
         println "after intercept"
     }
+    def recentNextPage()
+    {
+        int offset=Integer.parseInt(params.offset)
+        def resources=homeService.getRecentPost(offset)
+        String totalRecentPost=homeService.getTotalRecentPost()
+        render(template: 'home_post',model: [resources: resources,totalRecentPost:totalRecentPost])
 
+    }
+    def topNextPage()
+    {
+        int offset=Integer.parseInt(params.offset)
+        def resources=homeService.getTopPost(offset)
+        def totalTopPost=homeService.getTotalTopPost()
+        render(template: '/home/topPost', model: [resources:resources,totalTopPost:totalTopPost])
+
+    }
 }

@@ -18,7 +18,7 @@
 
 <div class="TotalSubscription" style="border-bottom: 1px solid #d3d3d3;color:rgba(117, 33, 46, 0.98);float:left;width: 45%">
     <div class="PostImage" style="float:left;margin-right: 2%">
-        <g:img dir="images" file="profile.png" width="128px"></g:img>
+        <g:img uri="${topicMap.photoPath}" width="128px"></g:img>
     </div>
     <div style="font-size: 120%;margin-top:2%;">
         ${topicMap.topicName}&nbsp;<span style="font-size: 60%;font-weight: bold ">(${topicMap.visibility})</span>
@@ -55,9 +55,11 @@
     <br><br>
     <div style="width: 90%;border-bottom: 1px solid lightgray;border-top: 1px solid lightgray;">
         <span style="font-size: 120%;font-weight: bold">User: ${topicMap.topicName}</span>
-        <span style="float:right;"><a href="" style="color:gray;text-decoration: none;font-size: 80%;">View All</a></span>
+        %{--<span style="float:right;"><a href="" style="color:gray;text-decoration: none;font-size: 80%;">View All</a></span>--}%
     </div>
-    <ls:topicDetail></ls:topicDetail>
+   <div id="UserOfTopic">
+       <ls:topicDetail></ls:topicDetail>
+   </div>
 
 </div>
 
@@ -70,13 +72,11 @@
                 <g:actionSubmit style="padding:1px 0px;border:0px;margin-left: -2.2%" class="Button" value="Go!" ></g:actionSubmit>
             </span>
         </legend>
-        <ls:postOnTopic></ls:postOnTopic>
+        <div id="PostOnTopic">
+            <ls:postOnTopic></ls:postOnTopic>
+        </div>
     </fieldset>
-    <div style="border:0px solid black;float: right;clear: both;width:15%;padding-bottom: .5%;">
-        <a href="" class="SignIn" style="color:white;">Next >></a>&nbsp;&nbsp;
-    </div>
+
 </div>
-
-
 </body>
 </html>

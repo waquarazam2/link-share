@@ -36,20 +36,8 @@
 
         $(document).ready(function(){
 
-         /*   var data=["Hello","Amir"];
-            $('#Search').focus(function(){
-
-                $('#Search').autocomplete({
-                    source:data
-                });
-
-            })
-
-*/
-
-            $('.Subscribe').click(function(){
+            $(document).on('click','.Subscribe',function(){
                 var url='/linksharing/topic/subscribeTopic/?id='+this.id
-
                 var status=new String($(this).text().toString())
                 var anchor=this
 
@@ -78,7 +66,7 @@
                     });
                 }
             });
-            $('.MarkAsRead').click(function(){
+            $(document).on('click','.MarkAsRead',function(){
                 var url='/linksharing/dashboard/markasread/?id='+this.id
                 var id=new String(this.id).toString()
                 var anchor=this
@@ -92,8 +80,7 @@
 
 
             });
-            $('.Serious').change(function(){
-
+            $(document).on('change','.Serious',function(){
                 var topicid=this.id
                 var seriousNess=new String($(this).val()).toString()
                 var url='/linksharing/topic/changeSeriousNess/?id='+topicid+'&seriousNess='+seriousNess
@@ -135,7 +122,7 @@
                 })
 
             });
-            $('.Delete').click(function(){
+            $(document).on('click','.Delete',function(){
                 var id=this.id
                 var url='/linksharing/post/deletePost/?id='+id
                 $.get(url,function(data){
@@ -149,25 +136,24 @@
             $('.Cancel').hide()
             $('.CancelPost').hide()
             var id
-            $('.Edit').click(function(){
+            $(document).on("click",".Edit",function(){
                 id=this.id
                 $('#Topic'+id).hide()
                 $('#TopicText'+id).show()
                 $('#Save'+id).show()
                 $('#Cancel'+id).show()
-            });
+            })
 
-            $('.Cancel').click(function(){
+            $(document).on("click",".Cancel",function(){
                 id=new String(this.id).toString()
                 id=id.substr(6)
                 $('#Topic'+id).show()
                 $('#TopicText'+id).hide()
                 $('#Save'+id).hide()
                 $('#Cancel'+id).hide()
-
             });
             $('.DescriptionText').hide()
-            $('.EditPost').click(function(){
+            $(document).on('click','.EditPost',function(){
                 //alert(this.id)
                 id=this.id
                 $('#Description'+id).hide()
@@ -175,7 +161,7 @@
                 $('#Save'+id).show()
                 $('#Cancel'+id).show()
             });
-            $('.CancelPost').click(function(){
+            $(document).on('click','.CancelPost',function(){
                 id=new String(this.id).toString()
                 id=id.substr(6)
                 $('#Description'+id).show()
@@ -183,6 +169,22 @@
                 $('#Save'+id).hide()
                 $('#Cancel'+id).hide()
             });
+            $(document).on("keydown","#SearchUserByName",function(){
+                var url='/linksharing/user/searchUserByName?query='+$("#SearchUserByName").val()+'&offset=0'
+                $.get(url,function(data){
+
+                    $("#UserList").html(data)
+
+                })
+            })
+            $(document).on("change","#SearchUserByType",function(){
+                var url='/linksharing/user/SearchUserByType?query='+$("#SearchUserByType").val()+'&offset=0'
+                $.get(url,function(data){
+
+                    $("#UserList").html(data)
+
+                })
+            })
         })
 
     </script>
@@ -199,9 +201,9 @@
         <li class="MenuLi"><g:link controller="home" action="home" >Home</g:link></li>
         <li class="MenuLi"><a href="" >Topic</a></li>
 
-        <li class="MenuLi"><g:link controller="dashboard" action="dashboard"> Dashboard</g:link></li>
+        <li class="MenuLi"><g:link controller="dashboard" action="dashboard" id="0"> Dashboard</g:link></li>
         <g:if test="${session["isAdmin"]}">
-             <li class="MenuLi"link><g:link controller="user" action="userlist">User</g:link></li>
+             <li class="MenuLi"link><g:link controller="user" action="userlist" id="0">User</g:link></li>
         </g:if>
     </ul>
 </div>

@@ -10,7 +10,7 @@ class LoginController
     def userAuthontication()
     {
         User user=User.findByUserNameAndActive(params.userName,true)
-    session.setMaxInactiveInterval(-1)
+        session.setMaxInactiveInterval(-1)
         if(user?.userName==params?.userName)
         {
             session["username"]=user.userName

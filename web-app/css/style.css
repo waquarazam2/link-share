@@ -179,3 +179,21 @@ div{
 {
     opacity: 0.3;
 }
+
+.Paginate a,.Paginate
+{
+    color: gray;
+    font-size: 90%;
+    margin:0% 1%;
+    text-decoration: none;
+}
+.Paginate a:hover
+{
+    color: #222;
+}
+.Paginate
+{
+    margin-top: 3%;
+    text-align: right;
+    margin-right: 20%;
+}

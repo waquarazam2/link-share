@@ -19,22 +19,21 @@
     <div class="RecentPost">
         <fieldset>
             <legend>Recent Post</legend>
-            <g:render template="/home/home_post" collection="${resources}" var="resource" />
+            <div id="RecentPost">
+              %{--  <g:render template="/home/home_post" collection="${resources}" var="resource" />--}%
+                <ls:recentPost></ls:recentPost>
+            </div>
         </fieldset>
-        <div style="text-align: right">
-            <g:link class="SignIn" style="color:white">View All</g:link>
-        </div>
     </div>
 
     %{--Top Post--}%
    <div style="border:0px solid lightgray;float:right;width:50%;" class="TopPost">
        <fieldset>
            <legend>Top Post</legend>
-           <g:render template="topPost" collection="${topPost}" var="resource"></g:render>
+           <div id="TopPost">
+               <ls:topPost></ls:topPost>
+           </div>
        </fieldset>
-        <div style="text-align: right">
-            <g:link class="SignIn" style="color:white">View All</g:link>
-        </div>
    </div>
 </body>
 </html>

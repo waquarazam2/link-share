@@ -12,10 +12,10 @@
     <script type="text/javascript">
         function openRegistration()
         {
-            window.location.href="../registration/registration"
+            window.location.href="/linksharing/registration/registration"
         }
     </script>
-    <title>Registration for Link Sharing</title>
+    <title>Login for Link Sharing</title>
 </head>
 <body>
 <header class="Header">

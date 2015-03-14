@@ -1,7 +1,7 @@
 <g:each in="${inboxDTOList}" var="inboxDTO">
 <div id="Inbox${inboxDTO.readingItem.id}">
     <div class="InboxImage">
-        <g:img dir="images" file="profile.png" width="128x"></g:img>
+        <g:img uri="${inboxDTO.user.photo}" width="128px"></g:img>
     </div>
     <div class="InboxMain">
         <div class="InboxHeader">
@@ -23,8 +23,10 @@
                 <g:if test="${inboxDTO.document}">
                     <g:link target="_blank" url="${inboxDTO.resource.filePath}">Download</g:link>&nbsp;&nbsp;
                 </g:if>
-                <a href="" >View Full Site</a >&nbsp;&nbsp;
-                <a href='javascript:void(0)' id=${inboxDTO.readingItem.id} class="MarkAsRead">Mark as read</a> &nbsp;&nbsp; &nbsp;&nbsp;
+                <g:else>
+                    <a href="${inboxDTO.resource.url}" >View Full Site</a >&nbsp;&nbsp;
+                </g:else>
+                <a href='javascript:void(0)' id=${inboxDTO.readingItem.id} class="MarkAsRead">Mark as read</a> &nbsp;&nbsp;
                 <g:link controller="post" action="post" id="${inboxDTO.resource.id}">View Post</g:link>
             </div>
         </div>
@@ -34,3 +36,7 @@
 
 
 </g:each>
+<div class="Paginate">
+    <util:remotePaginate max="10"  update="InboxItem" action="seeMoreInboxItem" total="${inboxSize}"></util:remotePaginate>
+</div>
+

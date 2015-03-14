@@ -5,10 +5,9 @@ class DashboardController {
     def dashBoardService
     def dashboard()
     {
-
-
-        /*def dashBoardUserInfo=dashBoardService.getDashBoardUserInfo(session["id"])
-        render(view: '/dashboard/dashboard',model: [dashBoardUserInfo:dashBoardUserInfo])*/
+       /* long userID=session["id"]
+        int totalSubscription=dashBoardService.getTotalSubscription(userID)
+        render(view: '/dashboard/dashboard',model:[totalSubscription:totalSubscription])*/
     }
     def markasread()
     {
@@ -28,7 +27,7 @@ class DashboardController {
 
         if(dashBoardService.deleteTopic(Long.parseLong(params.id)))
         {
-            redirect(action:'dashboard')
+            redirect(action:'dashboard',id:'0')
         }
         else
         {
@@ -41,10 +40,24 @@ class DashboardController {
         String topicName=params.TopicName
         if(dashBoardService.edit(topicID,topicName))
         {
-            redirect(action: 'dashboard')
+            redirect(action: 'dashboard',id:'0')
         }
         else {
             render "<h2>Sorry,Please Try Again </h2>"
         }
+    }
+    def seeMoreSubscription()
+    {
+        int offset=Integer.parseInt(params.offset)
+        def dashBoardSubscription=dashBoardService.getDashBoradSubscriptionInfo(session["id"],offset)
+        int totalSubscription=dashBoardService.getTotalSubscription(session["id"])
+        render(template: '/dashboard/dashboardSubscription',model:[dashBoardSubscriptionList:dashBoardSubscription,totalSubscription:totalSubscription])
+    }
+    def seeMoreInboxItem()
+    {
+        int offset=Integer.parseInt(params.offset)
+        def inboxDTOList=dashBoardService.getInboxItem(session["id"],offset)
+        int inboxSize=dashBoardService.getTotalInboxItem()
+        render(template: '/dashboard/inbox',model:[inboxDTOList:inboxDTOList,inboxSize:inboxSize])
     }
 }

@@ -1,6 +1,6 @@
 <g:each in="${postOnTopicDTOList}" var="postOnTopic">
     <div class="InboxImage">
-        <g:img dir="images" file="profile.png" width="128x"></g:img>
+        <g:img uri="${postOnTopic.user.photo}" width="128px"></g:img>
     </div>
     <div class="InboxMain">
         <div class="InboxHeader">
@@ -22,7 +22,9 @@
                 <g:if test="${postOnTopic.document}">
                     <g:link url="${postOnTopic.resource.filePath}">Download</g:link>&nbsp;&nbsp;&nbsp;&nbsp;
                 </g:if>
-                <a href="" >View Full Site</a >&nbsp;&nbsp;
+                <g:else>
+                     <a href="${postOnTopic.resource.url}" >View Full Site</a >&nbsp;&nbsp;
+                </g:else>
                 <g:if test="${postOnTopic.readingItem?.isRead}">
                     <a href="javascript:void 0">Read</a> &nbsp;&nbsp;
                 </g:if>
@@ -33,6 +35,10 @@
             </div>
         </div>
     </div>
-    <br><br><br>
+    <br><br><br><br>
 
 </g:each>
+
+<div class="Paginate">
+    <util:remotePaginate max="10" id="${params.id}" update="PostOnTopic" action="seeMorePostOnTopic" total="${postOnTopicSize}"></util:remotePaginate>
+</div>

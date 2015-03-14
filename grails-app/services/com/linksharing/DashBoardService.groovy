@@ -5,7 +5,14 @@ import grails.transaction.Transactional
 @Transactional
 class DashBoardService {
 
-    def getInboxItem(long userid) {
+    def inboxSize=0
+    def postOnTopicSize=0
+    int getTotalSubscription(long userID)
+    {
+        return Subscription.countByUser(User.get(userID))
+    }
+    def getInboxItem(long userid,int offset=0) {
+        int offsetPlus=10
         User user=User.get(userid)
         def sub=Subscription.withCriteria{
             projections{
@@ -30,37 +37,39 @@ class DashBoardService {
             }
         }
         readings=readings-[[]]
-        //readings=readings.reverse()
+        readings=readings?.reverse()
         readings=readings.sum()
+
+
+
 
         List <InboxDTO>inboxDTOList=new ArrayList<InboxDTO>()
         readings.each{reading->
 
             inboxDTOList.add(new InboxDTO(readingItem: reading ,resource:reading.resource,user: reading.user,document: reading.resource instanceof DocumentResource))
         }
+        inboxSize=inboxDTOList.size()
+        if(offset+5>inboxDTOList.size())
+        {
+            offsetPlus=inboxDTOList.size()%5
+        }
+        if(inboxSize>10)
+        {
+            inboxDTOList=inboxDTOList.subList(offset,offset+offsetPlus)
+
+        }
+
         return inboxDTOList
     }
-    def getPostOnTopic(long topicid,long userid)
+
+    def getTotalInboxItem()
     {
-        Topic topic=Topic.get(topicid)
-        def resources=Resource.withCriteria{
-            eq('topic',topic)
-            order('dateCreated',"desc")
-            maxResults(10)
-        }
-        List<PostOnTopicDTO> postOnTopicDTOList=new ArrayList<PostOnTopicDTO>()
-
-        resources.each {resource->
-            ReadingItem readingItem=ReadingItem.findByResourceAndUser(resource,User.get(userid))
-            postOnTopicDTOList.add(new PostOnTopicDTO(subscriptionStatus:readingItem?.user==User.get(userid)?true:false , user: resource.createdBy,resource: resource,document: resource instanceof DocumentResource,readingItem: readingItem))
-        }
-
-        return postOnTopicDTOList
+        return inboxSize
     }
-    def getDashBoradSubscriptionInfo(long userid)
+    def getDashBoradSubscriptionInfo(long userid,int offset=0)
     {
         User user=User.get(userid)
-        def subscriptions=Subscription.createCriteria().list([sort:'id',order:'desc',max:'20']){
+        def subscriptions=Subscription.createCriteria().list([offset:offset,sort:'id',order:'desc',max:5]){
             eq('user',user)
         }
         int totalSubscription
@@ -81,7 +90,7 @@ class DashBoardService {
         User user=User.get(userid)
         int totalTopic= Topic.countByCreatedBy(user)
         int totalSubscription=Subscription.countByUser(user)
-        Map dashBoardUserInfo=[name:user.getName(),username:user.userName,totalTopic:totalTopic,totalSubscription:totalSubscription]
+        Map dashBoardUserInfo=[name:user.getName(),photoPath:user.photo,username:user.userName,totalTopic:totalTopic,totalSubscription:totalSubscription]
         return dashBoardUserInfo
     }
     boolean markAsRead(long readingid)

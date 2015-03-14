@@ -9,6 +9,18 @@ class LinksharingTagLib {
     DashBoardService dashBoardService
     UserService userService
     PostService postService
+    HomeService homeService
+    def recentPost={attr,body->
+        def resources=homeService.getRecentPost()
+        String totalRecentPost=homeService.getTotalRecentPost()
+        println totalRecentPost+"---------------"
+        out<<render(template: '/home/home_post', model: [resources:resources,totalRecentPost:totalRecentPost])
+    }
+    def topPost={attr,body->
+        def resources=homeService.getTopPost()
+        def totalTopPost=homeService.getTotalTopPost()
+        out<<render(template: '/home/topPost', model: [resources:resources,totalTopPost:totalTopPost])
+    }
     def myTopicList={attr,body->
         def myTopicListDTO=topicService.getMyTopicList(User.get(session["id"]))
         out<<render(template:'/topic/myTopicList' , model:[myTopicListDTO:myTopicListDTO])
@@ -20,11 +32,13 @@ class LinksharingTagLib {
     }
     def inbox={attr,body->
         def inboxDTOList=dashBoardService.getInboxItem(session["id"])
-        out<<render(template: '/dashboard/inbox', model:[inboxDTOList:inboxDTOList])
+        def inboxSize=dashBoardService.getTotalInboxItem()
+        out<<render(template: '/dashboard/inbox', model:[inboxDTOList:inboxDTOList,inboxSize:inboxSize])
     }
     def subscription={attr,body->
-        def dashBoardSubscription=dashBoardService.getDashBoradSubscriptionInfo(session["id"])
-        out<<render(template: '/dashboard/dashboardSubscription',model:[dashBoardSubscriptionList:dashBoardSubscription])
+        def dashBoardSubscription=dashBoardService.getDashBoradSubscriptionInfo(session["id"],Integer.parseInt(params.id))
+        int totalSubscription=dashBoardService.getTotalSubscription(session["id"])
+        out<<render(template: '/dashboard/dashboardSubscription',model:[dashBoardSubscriptionList:dashBoardSubscription,totalSubscription:totalSubscription])
     }
     def userDetail={attr,body->
         def dashBoardUserInfo=dashBoardService.getDashBoardUserInfo(session["id"])
@@ -32,15 +46,19 @@ class LinksharingTagLib {
     }
     def topicDetail={attr,body->
         def showTopicDTOList=topicService.getUserTopic(Long.parseLong(params.id))
-        out<<render(template: '/topic/topicuser',model: [showTopicDTOList:showTopicDTOList])
+        def totalUserOfTopic=topicService.getTotalUserOfTopic()
+        out<<render(template: '/topic/topicuser',model: [showTopicDTOList:showTopicDTOList,totalUserOfTopic:totalUserOfTopic])
     }
     def postOnTopic={attr,body->
-        List<PostOnTopicDTO> postOnTopicDTOList=dashBoardService.getPostOnTopic(Long.parseLong(params.id),session["id"])
-        out<<render(template: '/topic/postOnTopic',model:[postOnTopicDTOList:postOnTopicDTOList])
+
+        List<PostOnTopicDTO> postOnTopicDTOList=topicService.getPostOnTopic(Long.parseLong(params.id),session["id"])
+        def postOnTopicSize=topicService.getPostOnTopicSize()
+        out<<render(template: '/topic/postOnTopic',model:[postOnTopicDTOList:postOnTopicDTOList,postOnTopicSize:postOnTopicSize])
     }
     def user={attr,body->
         List <UserDTO> userDTOList=userService.getUserInfo()
-        out<<render(template: '/user/user',model: [userDTOList:userDTOList])
+        def totalUser=userService.totalUser()
+        out<<render(template: '/user/user',model: [userDTOList:userDTOList,totalUser:totalUser])
     }
     def post= { attr, body ->
         def resource = postService.getViewPost(Long.parseLong(params.id))

@@ -11,39 +11,40 @@
     <asset:javascript src="application.js"></asset:javascript>
     <%@ page import="com.linksharing.*" %>
     <meta name="layout" content="master_page">
+    <link rel="stylesheet" type="text/css"  href="/linksharing/css/style.css">
     <title></title>
     <script>
         $(document).ready(function(){
-            $('.User').click(function(){
+            $(document).on('click','.User',function(){
                 var url=this.id
                 var anchor=this
-               var status=new String($(this).text().toString())
-
+                var status=new String($(this).text().toString())
                 if(status.toString()=='block')
                 {
-
                     $.get(url+'&active=true',function(data){
 
                         $(anchor).text('unblock')
 
                     });
-                    //alert(url)
                 }
                 else
                 {
                     $.get(url+'&active=false',function(data){
                         $(anchor).text('block')
                     });
-
                 }
-               // alert()
-
             });
         });
     </script>
 </head>
 
 <body>
-<ls:user></ls:user>
+<div class="UserHeader">
+    <input type="text" name="SearchUserByName" id="SearchUserByName" class="Text" placeholder="Search User By Name or Email">
+    <g:select name="SearchUserByType" id="SearchUserByType" from="['All User','Active','InActive']" class="Text"></g:select>
+</div>
+<div id="UserList">
+    <ls:user></ls:user>
+</div>
 </body>
 </html>

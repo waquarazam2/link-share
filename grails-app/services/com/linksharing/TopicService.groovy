@@ -5,6 +5,8 @@ import grails.transaction.Transactional
 @Transactional
 class TopicService {
 
+    def postOnTopicSize
+    def totalUserOfTopic
     def addTopic(TopicCO topicCO,User user)
     {
         if(topicCO.visib.equals('PUBLIC'))
@@ -61,12 +63,12 @@ class TopicService {
 
     }
 
-    def getTopic(long topicid,long userid)
+    def getTopic(long topicid)
     {
         Topic top=Topic.get(topicid)
         Subscription subscription=Subscription.findByTopic(top)
 
-        Map topic=[seriousness:subscription.seriousness,topicId:top.id,topicName:top.name,visibility:top.visibility,createdBy:top.createdBy.userName]
+        Map topic=[photoPath:top.createdBy.photo,seriousness:subscription.seriousness,topicId:top.id,topicName:top.name,visibility:top.visibility,createdBy:top.createdBy.userName]
         return topic
     }
     def userTotalSubscription(long topicid)
@@ -91,12 +93,12 @@ class TopicService {
         }
         return totalPost[0]
     }
-    def getUserTopic(long id)
+    def getUserTopic(long topicid,int offset=0)
     {
         List <ShowTopicDTO>showTopicDTOList=new ArrayList<ShowTopicDTO>()
-        Topic topic=Topic.get(id)
+        Topic topic=Topic.get(topicid)
 
-        def subscriptions=Subscription.createCriteria().list(max:10){
+        def subscriptions=Subscription.createCriteria().list(order:'desc',sort:'id',max:5,offset:offset){
             projections{
                 groupProperty('user')
             }
@@ -106,7 +108,12 @@ class TopicService {
 
             showTopicDTOList.add(new ShowTopicDTO(user:user,subscription: getUserSubscription(user),topic: getUserTopic(user)))
         }
+        totalUserOfTopic=Subscription.countByTopic(topic)
         return showTopicDTOList
+    }
+    def getTotalUserOfTopic()
+    {
+        return totalUserOfTopic
     }
     int getUserSubscription(User user)
     {
@@ -139,6 +146,7 @@ class TopicService {
         def topic=Topic.withCriteria{
             ne('createdBy',User.get(user.id))
             eq('visibility',Visibility.PUBLIC)
+            order('dateCreated','desc')
         }
         topic.each {Topic top ->
             subscriptionDTOOtherList.add(new SubscriptionDTO(topic:top,subscriptionStatus: getSubscribeStatus(top.id,user.id)))
@@ -146,4 +154,28 @@ class TopicService {
 
         return subscriptionDTOOtherList
     }
+    def getPostOnTopic(long topicid,long userid,int offset=0)
+    {
+        Topic topic=Topic.get(topicid)
+        def resources=Resource.withCriteria{
+            eq('topic',topic)
+            order('dateCreated',"desc")
+            maxResults(10)
+            firstResult(offset)
+        }
+        postOnTopicSize=Resource.countByTopic(topic)
+        List<PostOnTopicDTO> postOnTopicDTOList=new ArrayList<PostOnTopicDTO>()
+
+        resources.each {resource->
+            ReadingItem readingItem=ReadingItem.findByResourceAndUser(resource,User.get(userid))
+            postOnTopicDTOList.add(new PostOnTopicDTO(subscriptionStatus:readingItem?.user==User.get(userid)?true:false , user: resource.createdBy,resource: resource,document: resource instanceof DocumentResource,readingItem: readingItem))
+        }
+
+        return postOnTopicDTOList
+    }
+    def getTotalPostOnTopic()
+    {
+        return postOnTopicSize
+    }
+
 }

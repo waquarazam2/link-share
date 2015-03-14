@@ -1,5 +1,7 @@
 package com.linksharing
 
+import org.springframework.web.multipart.MultipartFile
+
 class User
 {
     String userName
@@ -7,7 +9,7 @@ class User
     String firstName
     String lastName
     String email
-    byte[] photo
+    String photo
     boolean admin
     boolean active
     Date dateCreated
@@ -19,7 +21,7 @@ class User
         password size: 6..20,blank: false
         firstName nullable:false
         lastName nullable:false
-        photo maxSize: 1024*20
+
     }
     static transients = ['name']
     String getName()
@@ -38,14 +40,14 @@ class User
     }
 
 
-    User(RegistrationCO registrationCO){
+    User(RegistrationCO registrationCO,String filePath){
         this.firstName=registrationCO.fName
         this.lastName=registrationCO.lName
         this.userName=registrationCO.uName
         this.password=registrationCO.passwd
         this.email=registrationCO.email
         this.active=true
-        this.photo=registrationCO.photo
+        this.photo=filePath
     }
 
 }

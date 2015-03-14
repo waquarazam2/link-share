@@ -23,7 +23,7 @@ class TopicController {
     {
         Long userTotalSubscription= topicService.userTotalSubscription(Long.parseLong(params.id))
         Long totalPost= topicService.totalPost(Long.parseLong(params.id))
-        Map topicMap= topicService.getTopic(Long.parseLong(params.id),session["id"])
+        Map topicMap= topicService.getTopic(Long.parseLong(params.id))
         boolean subscriptionStatus=topicService.getSubscribeStatus(Long.parseLong(params.id),session["id"])
         render(view:'/topic/view',model: [subscriptionStatus:subscriptionStatus,userTotalSubscription:userTotalSubscription,totalPost:totalPost,topicMap:topicMap])
     }
@@ -101,5 +101,16 @@ class TopicController {
         }
 
     }
-
+    def seeMorePostOnTopic()
+    {
+        List<PostOnTopicDTO> postOnTopicDTOList=topicService.getPostOnTopic(Long.parseLong(params.id),session["id"],Integer.parseInt(params.offset))
+        def postOnTopicSize=topicService.getTotalPostOnTopic()
+        render(template: '/topic/postOnTopic',model:[postOnTopicDTOList:postOnTopicDTOList,postOnTopicSize:postOnTopicSize])
+    }
+    def seeMoreUserOfTopic()
+    {
+        def showTopicDTOList=topicService.getUserTopic(Long.parseLong(params.id),Integer.parseInt(params.offset))
+        def totalUserOfTopic=topicService.getTotalUserOfTopic()
+        render(template: '/topic/topicuser',model: [showTopicDTOList:showTopicDTOList,totalUserOfTopic:totalUserOfTopic])
+    }
 }

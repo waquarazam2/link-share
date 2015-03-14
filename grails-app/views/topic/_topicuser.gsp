@@ -1,7 +1,7 @@
 <g:each in="${showTopicDTOList}" var="showTopicDTO">
 
     <div  style="float:left;margin-right: 2%">
-        <g:img dir="images" file="profile.png" width="100px"></g:img>
+        <g:img uri="${showTopicDTO.user.photo}" width="128px"></g:img>
     </div>
     <div style="font-size: 80%;margin-top:2%;">
         ${showTopicDTO.user.name}
@@ -20,6 +20,9 @@
         </div>
 
     </div>
-    <br><br><br>
-
+    <br><br><br><br/><br>
 </g:each>
+
+<div class="Paginate">
+    <util:remotePaginate max="5" id="${params.id}" update="UserOfTopic" action="seeMoreUserOfTopic" total="${totalUserOfTopic}"></util:remotePaginate>
+</div>

@@ -1,6 +1,7 @@
 package com.linksharing
 
 import grails.validation.Validateable
+import org.springframework.web.multipart.MultipartFile
 
 /**
  * Created by amir on 25/2/15.
@@ -14,7 +15,8 @@ class RegistrationCO
     String uName
     String passwd
     String confirmPassword
-    byte[] photo
+    MultipartFile photo
+   // byte[] photo
     static constraints={
         passwd validator: {val,registrationCO->
                 return val.equals(registrationCO.confirmPassword)

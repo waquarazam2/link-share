@@ -1,6 +1,6 @@
 
     <div class="PostImage" style="float:left;margin-right: 2%">
-        <g:img dir="images" file="profile.png" width="128px"></g:img>
+        <g:img uri="${dashBoardUserInfo.photoPath}" width="128px"></g:img>
     </div>
     <div style="font-size: 150%;margin-top:2%;">
         ${dashBoardUserInfo.name}

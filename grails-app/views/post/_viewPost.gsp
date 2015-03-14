@@ -6,13 +6,13 @@
     <g:else>
         <div style="width: 50%;float: left" id="ViewPost${resource.id}">
             <div class="InboxImage" style="float: left">
-                <g:img dir="images" file="profile.png" width="64px"></g:img>
+                <g:img uri="${resource.createdBy.photo}" width="128px"></g:img>
             </div>
             <div class="InboxMain">
                 <div class="InboxHeader">
                     <div>
                         <div  style="float: left">&nbsp;&nbsp;<span style="color:gray;font-size: 90%;">${resource.createdBy.name}</span></div>
-                        <div  style="float: right"><g:link controller="topic" action="view" id="${resource.topic.id}" class="SignIn">${resource.topic.name}</g:link> </div>
+                        <div  style="float: right"><a href="/linksharing/topic/view/?id=${resource.topic.id}&offset=0" class="SignIn">${resource.topic.name}</a> </div>
                     </div>
                 </div>
                 <div class="InboxMain" style="clear: right">
@@ -81,7 +81,9 @@
                     <g:if test="${resource instanceof com.linksharing.DocumentResource}">
                         <g:link url="${resource.filePath}" class="SignIn">Download</g:link>&nbsp;&nbsp;&nbsp;&nbsp;
                     </g:if>
-                    <a href="" class="SignIn">View Full Site</a >&nbsp;&nbsp;
+                    <g:else>
+                        <a href="${resource.url}" class="SignIn">View Full Site</a >&nbsp;&nbsp;
+                    </g:else>
                     <g:if test="${resource.createdBy==com.linksharing.User.get(session["id"])}">
                         <a href='javascript:void(0)' id="${resource.id}"  class="SignIn Delete">Delete</a> &nbsp;&nbsp; &nbsp;&nbsp;
                         <a href="javascript:void(0)" id="${resource.id}" class="SignIn EditPost">Edit</a>
