@@ -9,11 +9,11 @@
 <html>
 <head>
     <asset:javascript src="application.js"></asset:javascript>
-  %{--  <asset:stylesheet href="jquery.ui.css"></asset:stylesheet>
-
-    <asset:javascript src="jquery.js"></asset:javascript>
-    <asset:javascript src="jquery-ui.js"></asset:javascript>--}%
-
+   %{-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>--}%
+    <link rel="stylesheet" type="text/css" href="/linksharing/css/jquery-ui.css">
+    <script src="/linksharing/js/jquery-ui.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="/linksharing/css/home.css">
 
     <script type="text/javascript">
@@ -35,6 +35,15 @@
         }
 
         $(document).ready(function(){
+
+            var searchURL
+            $(document).on("keydown","#Search",function(){
+                searchURL='/linksharing/home/autoSuggestion?query='+$("#Search").val()
+                $.get(searchURL,function(data){
+                    $('#Search').autocomplete({source:data})
+                });
+
+            })
 
             $(document).on('click','.Subscribe',function(){
                 var url='/linksharing/topic/subscribeTopic/?id='+this.id
@@ -212,9 +221,9 @@
     <a href="" onclick="openInvitationPopup('/linksharing/sendInvitation/sendinvitation')"><g:img dir="images" file="send.png"  width="5%" style="margin-bottom:-1.7%;padding:0px 3px"></g:img></a>
     <a href="" onclick="openDocumentPopup()"><g:img dir="images" file="document.png" width="4%" style="margin-bottom:-1%;padding:0px 3px"></g:img></a>
     <a href=""  onclick="openLinkPopup()"><g:img dir="images" file="attachment1.png" width="4%" style="margin-bottom:-1%;padding:0px 3px"></g:img></a>
-    <input type="text" name="Search" class="Text" id="Search" placeholder="Search The Post"><input type="submit" class="Button" value="Go!">
+    <input type="text" name="Search" class="Text" id="Search" placeholder="Search The Topic"><input type="submit" class="Button" value="Go!">
     <a href="" ><g:img dir="images" file="user.png" width="4.5%" style="margin-bottom:-1.2%;padding:0px 3px"></g:img></a>
-    <a href="" class="SignIn"> ${session["username"]}</a>
+    <a href="/linksharing/profile/profile" class="SignIn"> ${session["username"]}</a>
     <g:link action="logout" controller="login" class="SignIn">Logout</g:link>
 
 </div>

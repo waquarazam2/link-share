@@ -17,8 +17,8 @@
 
             $("#Registration").validate({
                 rules:{
-                    fname:"required",
-                    lname:"required"
+                    fname:true,
+                    lname:true
                 },
                 message:{
                     fname:"Please Enter First Name"

@@ -28,7 +28,12 @@
         <caption>Login</caption>
         <tr>
             <td>User Name</td>
-            <td><g:textField class="Text" name="userName" placeholder="User Name"></g:textField></td>
+            <g:if test="${params.u}">
+                <td><g:textField class="Text" value="${params.u}" name="userName" placeholder="User Name"></g:textField></td>
+            </g:if>
+            <g:else>
+                <td><g:textField class="Text" name="userName" placeholder="User Name"></g:textField></td>
+            </g:else>
         </tr>
         <tr>
             <td>Password</td>
@@ -42,7 +47,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2"><a href="">Forgot Password</a> </td>
+            <td colspan="2"><a href="/linksharing/login/forgotPassword">Forgot Password</a> </td>
         </tr>
     </table>
 </g:form>

@@ -1,5 +1,8 @@
 package com.linksharing
 
+import grails.converters.JSON
+import org.codehaus.groovy.grails.web.json.JSONArray
+
 class HomeController
 {
     def homeService
@@ -34,4 +37,14 @@ class HomeController
         render(template: '/home/topPost', model: [resources:resources,totalTopPost:totalTopPost])
 
     }
+    def autoSuggestion()
+    {
+        String query=params.query
+        List<String> name=Topic.withCriteria {
+            ilike("name","%${query}%")
+        }.name
+
+        render(name as JSON)
+    }
+
 }

@@ -1,7 +1,7 @@
 <g:each in="${resources}" var="resource">
     <div class="PostImage">
 
-        <g:img uri="${resource.createdBy.photo}" width="128px"></g:img>
+        <a href="/linksharing/profile/profile/${resource.createdBy.id}"> <g:img uri="${resource.createdBy.photo}" width="128px"></g:img></a>
     </div>
     <div class="RecentPostMain">
         <div class="PostHeader">

@@ -10,6 +10,7 @@ class LinksharingTagLib {
     UserService userService
     PostService postService
     HomeService homeService
+    ProfileService profileService
     def recentPost={attr,body->
         def resources=homeService.getRecentPost()
         String totalRecentPost=homeService.getTotalRecentPost()
@@ -36,9 +37,15 @@ class LinksharingTagLib {
         out<<render(template: '/dashboard/inbox', model:[inboxDTOList:inboxDTOList,inboxSize:inboxSize])
     }
     def subscription={attr,body->
-        def dashBoardSubscription=dashBoardService.getDashBoradSubscriptionInfo(session["id"],Integer.parseInt(params.id))
+
+        def dashBoardSubscription=dashBoardService.getDashBoradSubscriptionInfo(session["id"])
         int totalSubscription=dashBoardService.getTotalSubscription(session["id"])
         out<<render(template: '/dashboard/dashboardSubscription',model:[dashBoardSubscriptionList:dashBoardSubscription,totalSubscription:totalSubscription])
+    }
+    def profileTopic={attr,body->
+        def userProfileTopicListDTO=profileService.getProfileTopic(session["id"])
+        int totalSubscription=profileService.getTotalTopic(session["id"])
+        out<<render(template: '/profile/profileTopic',model:[userProfileTopicListDTOList:userProfileTopicListDTO,totalSubscription:totalSubscription])
     }
     def userDetail={attr,body->
         def dashBoardUserInfo=dashBoardService.getDashBoardUserInfo(session["id"])
