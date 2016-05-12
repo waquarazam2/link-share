@@ -54,7 +54,7 @@
 
 <footer class="Footer">
     <span style="border-right: 2px solid;padding:0px 10px">All Right Reserved</span>
-    <span style="border-right: 2px solid;padding:0px 10px">Powered By TO THE NEW DIGITAL</span>
+    <span style="border-right: 2px solid;padding:0px 10px">Powered By SHARDA UNIVERSITY</span>
     <span><a href="">About us </a> </span>
 </footer>
 </body>

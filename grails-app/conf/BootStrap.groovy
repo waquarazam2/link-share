@@ -77,9 +77,9 @@ class BootStrap {
         (1..5).each {
             User user = new User()
 
-            user.firstName = "first${it}"
-            user.lastName = "last${it}"
-            user.userName = "mohdamir${it}"
+            user.firstName = "Waquar${it}"
+            user.lastName = "Azam${it}"
+            user.userName = "waquarazam${it}"
             user.password = "abcdefgh${it}"
             user.email = "user${it}@gmail.com"
             user.admin = true

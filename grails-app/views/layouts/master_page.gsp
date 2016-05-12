@@ -208,7 +208,7 @@
 
     <ul class="Menu">
         <li class="MenuLi"><g:link controller="home" action="home" >Home</g:link></li>
-        <li class="MenuLi"><a href="" >Topic</a></li>
+        <li class="MenuLi"><g:link controller="topic" action="topic" >Topic</g:link></li>
 
         <li class="MenuLi"><g:link controller="dashboard" action="dashboard" id="0"> Dashboard</g:link></li>
         <g:if test="${session["isAdmin"]}">
@@ -232,7 +232,7 @@
 </div>
 <footer class="Footer">
     <span style="border-right: 2px solid;padding:0px 10px">All Right Reserved</span>
-    <span style="border-right: 2px solid;padding:0px 10px">Powered By TO THE NEW DIGITAL</span>
+    <span style="border-right: 2px solid;padding:0px 10px">Powered By SHARDA UNIVERSITY</span>
     <span><a href="">About us &nbsp;&nbsp;</a> </span>
 </footer>
 </body>

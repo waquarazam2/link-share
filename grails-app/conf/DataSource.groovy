@@ -22,7 +22,7 @@ environments {
             driverClassName="com.mysql.jdbc.Driver"
             url = "jdbc:mysql://localhost:3306/linksharing"
             username="root"
-            password="amir"
+            password="igdefault"
         }
     }
     test {
